@@ -84,6 +84,19 @@
 .site-header nav .nav-github:hover{color:var(--lime)}
 @media(max-width:760px){.products-menu-panel{right:-66px;width:min(300px,calc(100vw - 36px))}.site-header nav{gap:20px}.site-header nav .nav-github{font-size:.76rem}}
 .bench-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:34px;background:#c8cdc5;border:1px solid #c8cdc5}
+.benchmark-chart{margin-top:34px;padding:28px 32px;background:#16202b;color:#f5f5ed;border:1px solid #334451}
+.benchmark-chart-head{display:flex;justify-content:space-between;gap:20px;align-items:baseline;margin-bottom:26px}
+.benchmark-chart-head strong{font-size:1.25rem;letter-spacing:-.04em}
+.benchmark-chart-head span,.benchmark-chart-row,.benchmark-chart p{font-family:'DM Mono',Consolas,monospace;font-size:.7rem;letter-spacing:.05em}
+.benchmark-chart-head span{color:#a7b7ac}
+.benchmark-chart-row{display:grid;grid-template-columns:165px 1fr 55px;align-items:center;gap:18px;margin:15px 0}
+.benchmark-chart-row>div{height:12px;background:#ffffff16;overflow:hidden}
+.benchmark-chart-row i{display:block;width:var(--bar);height:100%;background:#d9f977}
+.benchmark-chart-row:nth-of-type(3) i{background:#bbd985}
+.benchmark-chart-row b{text-align:right;font-size:.9rem;color:#d9f977}
+.benchmark-chart p{color:#acb7ae;line-height:1.65;margin:24px 0 0}
+.benchmark-chart a{color:#d9f977}
+@media(max-width:650px){.benchmark-chart{padding:20px}.benchmark-chart-head{display:block}.benchmark-chart-head span{display:block;margin-top:7px}.benchmark-chart-row{grid-template-columns:86px 1fr 42px;gap:9px;font-size:.58rem}}
 .bench-strip>div{display:flex;flex-direction:column;gap:8px;padding:25px;background:#e9ebe2}
 .bench-strip strong{font-size:clamp(1.8rem,3vw,2.8rem);letter-spacing:-.06em;line-height:1;color:#1c2835}
 .bench-strip span{font-family:'DM Mono',Consolas,monospace;font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:#4c5962}

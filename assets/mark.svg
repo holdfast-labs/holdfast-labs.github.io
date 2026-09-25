@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Holdfast Labs">
-  <rect width="64" height="64" rx="11" fill="#d9f977"/>
-  <path d="M13 12h12v14h14V12h12v40H39V38H25v14H13z" fill="#101326"/>
-  <path d="M9 9h14M41 9h14M9 55h14M41 55h14" stroke="#101326" stroke-width="2"/>
+  <rect width="64" height="64" rx="10" fill="#eaeae3"/>
+  <path d="M9 18 22 7h10v15l-8 7v6h18v-7l-7-6V7h11l9 11v28L44 57H35V43H24v14H16L9 46z" fill="#171b1b"/>
+  <path d="M25 31h17v5H25z" fill="#d9f977"/>
 </svg>
