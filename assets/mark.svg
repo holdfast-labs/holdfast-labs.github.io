@@ -1,1 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Holdfast Labs"><rect width="64" height="64" rx="17" fill="#d9f977"/><path d="M18 17v30m28-30v30M18 32h28" fill="none" stroke="#101326" stroke-width="7" stroke-linecap="square"/><circle cx="46" cy="17" r="4.5" fill="#101326"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Holdfast Labs">
+  <rect width="64" height="64" rx="11" fill="#d9f977"/>
+  <path d="M13 12h12v14h14V12h12v40H39V38H25v14H13z" fill="#101326"/>
+  <path d="M9 9h14M41 9h14M9 55h14M41 55h14" stroke="#101326" stroke-width="2"/>
+</svg>
