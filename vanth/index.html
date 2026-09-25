@@ -9,20 +9,26 @@
 <section aria-labelledby="demo-title" class="detail-section">
 <div class="detail-heading"><p class="eyebrow">Monitor / 01</p><h2 id="demo-title">A live view of the work.</h2></div>
 <div class="video-frame"><video aria-label="Real vanth-monitor showing jobs, plots, metrics and events" class="showcase-video" controls="" data-autoplay-demo="" loop="" muted="" playsinline="" poster="/assets/vanth-poster.jpg" preload="metadata"><source src="/assets/vanth-monitor-demo.mp4" type="video/mp4"/><a href="/assets/vanth-monitor-demo.mp4">Download video</a></video></div>
-
 <div class="monitor-modes" data-monitor-modes="">
 <div class="monitor-tabs"><button class="active" data-monitor-tab="events" type="button">Events</button><button data-monitor-tab="logs" type="button">Log tail</button><button data-monitor-tab="slowest" type="button">Slowest runs</button></div>
 <pre aria-live="polite" class="monitor-output" data-monitor-output=""></pre>
 </div>
-
 </section>
+
 <section aria-labelledby="wake-title" class="detail-section wake-section">
-<div class="detail-heading"><p class="eyebrow">Wake / 02</p><h2 id="wake-title">A checkpoint wakes Codex.</h2></div>
-<div aria-label="Replayed trace from an actual Vanth checkpoint delivery to a Codex CLI thread" class="wake-scene" data-wake-demo="">
-<div class="wake-rail"><div class="wake-node" data-step="0"><small>01 / JOB</small><strong>Index ready.</strong><span>checkpoint emitted</span></div><div class="wake-line"></div><div class="wake-node" data-step="1"><small>02 / VANTH</small><strong>Delivery queued.</strong><span>checkpoint → codex_thread</span></div><div class="wake-line"></div><div class="wake-node" data-step="2"><small>03 / CODEX</small><strong>Thread resumed.</strong><span>delivery confirmed</span></div></div>
-<div class="wake-console"><div><span>JOB</span> <code>job_2db670e247c2</code> <b>checkpoint</b></div><div><span>DELIVERY</span> <code>del_8e04bc5405e44a56</code> <b>delivered</b></div><div><span>THREAD</span> <code>01a0d6fb…63cc</code> <b>resumed</b></div></div>
+<div class="detail-heading"><p class="eyebrow">Wake / 02</p><h2 id="wake-title">One checkpoint. Two agents.</h2></div>
+<div class="wake-demo" data-wake-tabs="">
+<div aria-label="Wake demo client" class="wake-tabs" role="tablist">
+<button aria-controls="codex-wake-panel" aria-selected="true" id="codex-wake-tab" role="tab" type="button">Codex CLI</button>
+<button aria-controls="opencode-wake-panel" aria-selected="false" id="opencode-wake-tab" role="tab" type="button">OpenCode</button>
 </div>
-<p class="trace-note">Recorded local run · <a href="/assets/vanth-wake-trace.json">trace ↗</a></p>
+<div aria-labelledby="codex-wake-tab" class="wake-video-panel" id="codex-wake-panel" role="tabpanel">
+<video aria-label="Actual Codex CLI session showing a Vanth checkpoint wake and response" controls="" data-autoplay-demo="" loop="" muted="" playsinline="" poster="/assets/vanth-codex-wake.jpg" preload="metadata"><source src="/assets/vanth-codex-wake.mp4" type="video/mp4"/><a href="/assets/vanth-codex-wake.mp4">Download video</a></video>
+</div>
+<div aria-labelledby="opencode-wake-tab" class="wake-video-panel" hidden="" id="opencode-wake-panel" role="tabpanel">
+<video aria-label="Actual OpenCode TUI session showing a Vanth checkpoint wake and response" controls="" data-autoplay-demo="" loop="" muted="" playsinline="" poster="/assets/vanth-opencode-wake.jpg" preload="metadata"><source src="/assets/vanth-opencode-wake.mp4" type="video/mp4"/><a href="/assets/vanth-opencode-wake.mp4">Download video</a></video>
+</div>
+</div>
 </section>
 <section aria-labelledby="start-title" class="detail-section reveal"><div class="detail-heading"><div><h2 id="start-title">Try it.</h2></div></div><div class="code-wrap"><button class="copy-button" data-copy-target="vanth-quickstart" type="button">Copy commands</button><pre class="code-box" id="vanth-quickstart"><code>
 uv tool install vanth

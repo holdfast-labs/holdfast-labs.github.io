@@ -38,18 +38,32 @@ document.querySelectorAll('[data-copy-target]').forEach((button) => {
     } catch { button.textContent = 'Select commands to copy'; }
   });
 });
-const wakeDemo = document.querySelector('[data-wake-demo]');
-if (wakeDemo) {
-  const nodes = [...wakeDemo.querySelectorAll('.wake-node')];
-  const lines = [...wakeDemo.querySelectorAll('.wake-console>div')];
-  let step = 0;
-  const show = () => {
-    nodes.forEach((item, i) => item.classList.toggle('active', i <= step));
-    lines.forEach((item, i) => item.classList.toggle('active', i <= step));
-    step = (step + 1) % 4;
+const wakeTabs = document.querySelector('[data-wake-tabs]');
+if (wakeTabs) {
+  const tabs = [...wakeTabs.querySelectorAll('[role="tab"]')];
+  const panels = tabs.map((tab) => document.getElementById(tab.getAttribute('aria-controls')));
+  const select = (index) => {
+    tabs.forEach((tab, i) => {
+      const active = i === index;
+      tab.setAttribute('aria-selected', String(active));
+      tab.tabIndex = active ? 0 : -1;
+      panels[i].hidden = !active;
+      const video = panels[i].querySelector('video');
+      if (active && !motionReduced) video.play().catch(() => {});
+      else video.pause();
+    });
   };
-  show();
-  if (!motionReduced) window.setInterval(show, 1500);
+  tabs.forEach((tab, i) => {
+    tab.addEventListener('click', () => select(i));
+    tab.addEventListener('keydown', (event) => {
+      if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+      event.preventDefault();
+      const next = (i + (event.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length;
+      select(next);
+      tabs[next].focus();
+    });
+  });
+  select(0);
 }
 const modes = document.querySelector('[data-monitor-modes]');
 if (modes) {
