@@ -14,13 +14,39 @@ if (!motionReduced) {
     const videoObserver = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         const video = entry.target;
-        if (entry.isIntersecting) video.play().catch(() => {});
+        if (entry.isIntersecting && !video.closest('[role="tabpanel"][hidden]')) video.play().catch(() => {});
         else video.pause();
       });
     }, { threshold: 0.35 });
     demos.forEach((video) => videoObserver.observe(video));
   } else demos.forEach((video) => video.play().catch(() => {}));
 }
+document.querySelectorAll('[data-agent-demo]').forEach((demo) => {
+  const tabs = [...demo.querySelectorAll('[role="tab"]')];
+  const select = (tab) => {
+    tabs.forEach((item) => {
+      const active = item === tab;
+      const panel = document.getElementById(item.getAttribute('aria-controls'));
+      item.setAttribute('aria-selected', String(active));
+      item.classList.toggle('is-active', active);
+      item.tabIndex = active ? 0 : -1;
+      panel.hidden = !active;
+      const video = panel.querySelector('video');
+      if (active && !motionReduced) video.play().catch(() => {});
+      else video.pause();
+    });
+  };
+  tabs.forEach((tab, index) => {
+    tab.addEventListener('click', () => select(tab));
+    tab.addEventListener('keydown', (event) => {
+      if (event.key !== 'ArrowRight' && event.key !== 'ArrowLeft') return;
+      event.preventDefault();
+      const next = tabs[(index + (event.key === 'ArrowRight' ? 1 : -1) + tabs.length) % tabs.length];
+      select(next);
+      next.focus();
+    });
+  });
+});
 document.addEventListener('click', (event) => {
   document.querySelectorAll('.products-menu[open]').forEach((menu) => { if (!menu.contains(event.target)) menu.open = false; });
 });
