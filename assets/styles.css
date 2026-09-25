@@ -145,6 +145,7 @@
 .comparison-bars .bar span{position:absolute;left:100%;margin-left:8px;font:600 .75rem 'DM Mono',monospace}
 .comparison-bars .seek{background:#d9f977;color:#d9f977}
 .comparison-bars .everything{background:#aab7a8;color:#dbe4d8}
+.comparison-bars .everything span{left:auto;right:8px;color:#172018}
 .comparison-method,.trace-note{font:400 .72rem/1.65 'DM Mono',monospace;color:#a9b6a8;max-width:780px;margin:25px 0 0}
 .comparison-method a{color:#d9f977}
 @keyframes bar-in{from{transform:scaleX(0)}to{transform:scaleX(1)}}
