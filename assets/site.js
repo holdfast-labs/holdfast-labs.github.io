@@ -9,17 +9,22 @@ document.querySelectorAll('[data-year]').forEach((item) => { item.textContent = 
 document.querySelectorAll('video').forEach((video) => video.addEventListener('error', () => { const fallback = video.closest('.video-frame')?.querySelector('.video-fallback'); if (fallback) fallback.hidden = false; }));
 const motionReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const demos = document.querySelectorAll('[data-autoplay-demo]');
+const autoPlayed = new WeakSet();
 if (!motionReduced) {
   if ('IntersectionObserver' in window) {
     const videoObserver = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         const video = entry.target;
-        if (entry.isIntersecting) video.play().catch(() => {});
-        else video.pause();
+        if (entry.isIntersecting) {
+          if (!autoPlayed.has(video)) {
+            autoPlayed.add(video);
+            video.play().catch(() => {});
+          }
+        }
       });
     }, { threshold: 0.35 });
     demos.forEach((video) => videoObserver.observe(video));
-  } else demos.forEach((video) => video.play().catch(() => {}));
+  } else demos.forEach((video) => { autoPlayed.add(video); video.play().catch(() => {}); });
 }
 document.addEventListener('click', (event) => {
   document.querySelectorAll('.products-menu[open]').forEach((menu) => { if (!menu.contains(event.target)) menu.open = false; });

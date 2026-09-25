@@ -1,8 +1,8 @@
-.home{background:#0d1010;color:#f2f0e9;overflow:hidden}
+.home{background:#0d1010;color:#f2f0e9;overflow-x:hidden}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 .home .site-header{position:absolute;top:0;left:0;right:0;z-index:10;background:transparent;border-bottom:1px solid #f2f0e921}
 .home .wordmark img{background:#e9f0d2;border-radius:5px}
-.landing{position:relative;height:100svh;min-height:650px;overflow:hidden;background:radial-gradient(ellipse 56% 60% at 50% 53%,#26342d 0,#101716 42%,#0b0e0e 100%);isolation:isolate}
+.landing{position:relative;height:100svh;overflow:hidden;background:radial-gradient(ellipse 56% 60% at 50% 53%,#26342d 0,#101716 42%,#0b0e0e 100%);isolation:isolate}
 #landing-canvas,.landing-vignette{position:absolute;inset:0;width:100%;height:100%}
 #landing-canvas{z-index:0}
 .landing-vignette{z-index:1;pointer-events:none;background:linear-gradient(90deg,#090c0c99 0,transparent 23% 77%,#090c0c99 100%),linear-gradient(0deg,#090c0cba,transparent 24% 74%,#090c0c88)}
@@ -13,9 +13,11 @@
 .landing-edge-left{left:2.2vw;writing-mode:vertical-rl;transform:translateY(-50%) rotate(180deg)}
 .landing-edge-right{right:2.2vw;writing-mode:vertical-rl;transform:translateY(-50%)}
 .landing-foot{position:absolute;z-index:5;left:50%;bottom:28px;transform:translateX(-50%);display:flex;align-items:center;gap:22px;font:500 11px/1 'DM Mono',Consolas,monospace;letter-spacing:.16em;text-transform:uppercase;color:#e7f2d3a8;white-space:nowrap}
+.landing-foot a{text-decoration:none;color:inherit;transition:color .2s}
+.landing-foot a:hover,.landing-foot a:focus-visible{color:#d9f977}
 .landing-foot-rule{width:76px;height:1px;background:linear-gradient(90deg,#d9f977,#eaf6df44)}
 @keyframes emblem-in{from{opacity:0;transform:translate(-50%,-43%) scale(.86);filter:blur(15px) drop-shadow(0 52px 55px #000b)}to{opacity:1;transform:translate(-50%,-50%) scale(1);filter:blur(0) drop-shadow(0 52px 55px #000b)}}
 @keyframes emblem-float{50%{transform:translate(-50%,-51.4%)}}
 @keyframes glow-pulse{50%{opacity:.28;transform:scale(1.13)}}
-@media(max-width:700px){.landing{min-height:560px}.landing-symbol{width:min(135vw,100vh)}.landing-edge{display:none}.landing-foot{bottom:35px;font-size:10px;gap:14px}.landing-foot-rule{width:35px}}
+@media(max-width:700px){.landing-symbol{width:min(135vw,100vh)}.landing-edge{display:none}.landing-foot{bottom:22px;font-size:10px;gap:14px}.landing-foot-rule{width:35px}}
 @media(prefers-reduced-motion:reduce){.landing-symbol,.landing-symbol:before{animation:none!important}}

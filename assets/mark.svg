@@ -1,5 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Holdfast Labs">
-  <rect width="64" height="64" rx="10" fill="#eaeae3"/>
-  <path d="M9 18 22 7h10v15l-8 7v6h18v-7l-7-6V7h11l9 11v28L44 57H35V43H24v14H16L9 46z" fill="#171b1b"/>
-  <path d="M25 31h17v5H25z" fill="#d9f977"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200" role="img" aria-label="Holdfast Labs">
+  <rect x="0" y="0" width="1200" height="1200" rx="180" fill="#d9f977"/>
+  <path d="M190 247 388 49q15-15 36-15h96q27 0 27 27v214q0 22-16 38l-66 66q-18 18-18 44v64q0 30 30 34l300 34q34 4 34 38v38q0 35-35 35H488q-68 0-105 39-28 29-28 70 0 47 38 72l75 47q19 12 19 35v167q0 29-29 29H343q-16 0-28-12L189 973q-13-13-13-31V281q0-20 14-34Z" fill="#222927"/>
+  <path d="M463 548h323q25 0 25 25v64q0 25-25 25H463q-26 0-26-26v-62q0-26 26-26Z" fill="#a4cc1f"/>
+  <path d="M772 279q0-31 31-31h91q22 0 37 15l136 137q13 13 13 31v516q0 20-14 34L943 1105q-13 13-32 13H791q-31 0-31-31V922q0-20-17-31l-46-30q-18-12-39-15l-217-35q-28-5-28-33v-40q0-29 29-29h311q55 0 91-36 31-31 31-76 0-47-38-79l-47-39q-18-15-18-38V279Z" fill="#fffef4"/>
 </svg>
