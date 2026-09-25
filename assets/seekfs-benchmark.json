@@ -1,0 +1,46 @@
+{
+  "scope": "Illustrative local measurement on Windows 11; not a production-wide performance claim",
+  "fixture": {
+    "generated_files": 20000,
+    "indexed_entries": 20241,
+    "folders": 80,
+    "index_bytes": 4079708
+  },
+  "method": {
+    "timer": "Python time.perf_counter_ns around subprocess.run for complete seekfs CLI invocation",
+    "warmup_per_query": 10,
+    "measured_launches_per_query": 90,
+    "includes": [
+      "process startup",
+      "local index load",
+      "query"
+    ]
+  },
+  "index_build_seconds": 0.46,
+  "queries": {
+    "Exact name": {
+      "command": "seekfs search -db bench-corpus.gsi search_01200.go",
+      "median_ms": 37.17,
+      "p95_ms": 39.25,
+      "min_ms": 35.36,
+      "max_ms": 41.35,
+      "repeats": 90
+    },
+    "Extension filter": {
+      "command": "seekfs count -db bench-corpus.gsi ext:go",
+      "median_ms": 49.01,
+      "p95_ms": 51.41,
+      "min_ms": 45.93,
+      "max_ms": 52.78,
+      "repeats": 90
+    },
+    "Path filter": {
+      "command": "seekfs search -db bench-corpus.gsi -path ext:go dir:src search",
+      "median_ms": 36.07,
+      "p95_ms": 38.47,
+      "min_ms": 33.5,
+      "max_ms": 42.12,
+      "repeats": 90
+    }
+  }
+}

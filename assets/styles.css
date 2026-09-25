@@ -67,3 +67,25 @@
 .copy-button:hover{border-color:var(--lime);color:var(--lime)}
 .code-wrap .code-box{padding-top:65px}
 @media(max-width:760px){.hero{min-height:0}.hero-copy{padding:68px 0 28px}.hero-art{width:min(390px,78%);margin:0 auto 55px}.product-section{padding-top:75px}.proof-command{margin:40px 0 28px}.proof-bottom{margin-top:40px}.detail-hero{padding:58px 0 66px}.detail-label{margin-top:42px}.detail-body .shell{padding-top:60px}}
+.products-menu{position:relative;color:#e9ebea;font-size:.88rem;font-weight:700}
+.products-menu summary{list-style:none;cursor:pointer;padding:12px 4px;white-space:nowrap}
+.products-menu summary::-webkit-details-marker{display:none}
+.products-menu summary span{color:var(--lime);padding-left:9px;font-size:1.1em}
+.products-menu[open] summary span{display:inline-block;transform:rotate(180deg)}
+.products-menu summary:focus-visible{outline:3px solid var(--lime);outline-offset:5px}
+.products-menu-panel{position:absolute;right:-48px;top:calc(100% + 18px);z-index:30;width:300px;background:#1a2232;border:1px solid #d9f97762;box-shadow:0 25px 55px #050711b8;padding:9px}
+.products-menu-panel:before{content:'';position:absolute;top:-19px;left:0;right:0;height:18px}
+.products-menu-panel a{display:block!important;padding:15px 17px;color:#f4f4ed!important;text-decoration:none;border-bottom:1px solid #ffffff20}
+.products-menu-panel a:last-child{border-bottom:0}
+.products-menu-panel a:hover{background:#d9f97716;color:var(--lime)!important}
+.products-menu-panel strong{display:block;font-size:1.2rem;letter-spacing:-.04em;margin-top:6px}
+.menu-number{display:block;color:#9aa7af;font-family:'DM Mono',Consolas,monospace;font-size:.6rem;letter-spacing:.1em}
+.site-header nav .nav-github{color:#c3c6d1;text-decoration:none;font-size:.88rem;font-weight:700}
+.site-header nav .nav-github:hover{color:var(--lime)}
+@media(max-width:760px){.products-menu-panel{right:-66px;width:min(300px,calc(100vw - 36px))}.site-header nav{gap:20px}.site-header nav .nav-github{font-size:.76rem}}
+.bench-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:34px;background:#c8cdc5;border:1px solid #c8cdc5}
+.bench-strip>div{display:flex;flex-direction:column;gap:8px;padding:25px;background:#e9ebe2}
+.bench-strip strong{font-size:clamp(1.8rem,3vw,2.8rem);letter-spacing:-.06em;line-height:1;color:#1c2835}
+.bench-strip span{font-family:'DM Mono',Consolas,monospace;font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:#4c5962}
+@media(max-width:650px){.bench-strip{grid-template-columns:1fr}.bench-strip>div{padding:19px}}
+@media(max-width:540px){.products-menu-panel{right:auto;left:-18px;width:min(280px,calc(100vw - 36px))}}
