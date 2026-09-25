@@ -1,43 +1,23 @@
 <!DOCTYPE html>
 
 <html lang="en">
-<head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><meta content="#101326" name="theme-color"/><meta content="vanth is a localhost background-job daemon with durable events and an MCP interface for agents." name="description"/><title>vanth — Background jobs for agents | Holdfast Labs</title><link href="/assets/mark.svg" rel="icon" type="image/svg+xml"/><link href="/assets/styles.css" rel="stylesheet"/><script defer="" src="/assets/site.js"></script></head>
+<head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><meta content="#101326" name="theme-color"/><meta content="vanth lets coding agents launch durable background jobs and return to the result." name="description"/><title>vanth — Background jobs for agents | Holdfast Labs</title><link href="/assets/mark.svg" rel="icon" type="image/svg+xml"/><link href="/assets/styles.css" rel="stylesheet"/><script defer="" src="/assets/site.js"></script></head>
 <body class="vanth-page"><a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header"><div class="shell nav-shell"><a aria-label="Holdfast Labs home" class="wordmark" href="/"><img alt="" height="38" src="/assets/mark.svg" width="38"/><span>holdfast<span class="wordmark-light">labs</span></span></a><nav aria-label="Main navigation"><details class="products-menu"><summary>Products <span aria-hidden="true">⌄</span></summary><div class="products-menu-panel"><a href="/seekfs/"><span class="menu-number">01 / WINDOWS FILE SEARCH</span><strong>seekfs</strong></a><a href="/vanth/"><span class="menu-number">02 / BACKGROUND JOBS</span><strong>vanth</strong></a></div></details><a class="nav-github" href="https://github.com/holdfast-labs">GitHub ↗</a></nav></div></header>
-<main id="main"><section class="detail-hero"><div class="shell"><p class="detail-label">02 / Background jobs</p><h1>vanth<span>.</span></h1><p class="detail-dek">Start the job. Get the signal.</p><div class="button-row"><a class="button button-bright" href="https://github.com/holdfast-labs/vanth#quick-start">Get vanth <span aria-hidden="true">↗</span></a><a class="button button-ghost" href="https://github.com/holdfast-labs/vanth">Source <span aria-hidden="true">↗</span></a></div></div></section>
+<main id="main"><section class="detail-hero"><div class="shell"><p class="detail-label">02 / Agent-driven work</p><h1>vanth<span>.</span></h1><p class="detail-dek">Agents start the work. Vanth brings back the result.</p><div class="button-row"><a class="button button-bright" href="https://github.com/holdfast-labs/vanth#quick-start">Get vanth <span aria-hidden="true">↗</span></a><a class="button button-ghost" href="https://github.com/holdfast-labs/vanth">Source <span aria-hidden="true">↗</span></a></div></div></section>
 <div class="detail-body"><div class="shell">
+<section aria-labelledby="agent-title" class="detail-section agent-section">
+<div class="detail-heading"><p class="eyebrow">Agent / 01</p><div><h2 id="agent-title">Give an agent a real job.</h2><p>OpenCode runs seekfs’s global search parity test through Vanth, then verifies the result.</p></div></div>
+<div class="agent-demo"><div class="agent-demo-bar"><span class="agent-live-dot" aria-hidden="true"></span><span>OpenCode × Vanth</span><span>seekfs / regression test</span></div><video aria-label="Screen recording of an OpenCode agent inspecting seekfs source, running a real regression test through Vanth, and checking the result" controls="" data-autoplay-demo="" loop="" muted="" playsinline="" poster="/assets/vanth-agent-task.jpg" preload="metadata"><source src="/assets/vanth-agent-task.mp4" type="video/mp4"/><a href="/assets/vanth-agent-task.mp4">Download video</a></video></div>
+</section>
+
 <section aria-labelledby="demo-title" class="detail-section">
-<div class="detail-heading"><p class="eyebrow">Monitor / 01</p><h2 id="demo-title">A live view of the work.</h2></div>
+<div class="detail-heading"><p class="eyebrow">Monitor / 02</p><h2 id="demo-title">Watch the work.</h2></div>
 <div class="video-frame"><video aria-label="Real vanth-monitor showing jobs, plots, metrics and events" class="showcase-video" controls="" data-autoplay-demo="" loop="" muted="" playsinline="" poster="/assets/vanth-poster.jpg" preload="metadata"><source src="/assets/vanth-monitor-demo.mp4" type="video/mp4"/><a href="/assets/vanth-monitor-demo.mp4">Download video</a></video></div>
-<div class="monitor-modes" data-monitor-modes="">
-<div class="monitor-tabs"><button class="active" data-monitor-tab="events" type="button">Events</button><button data-monitor-tab="logs" type="button">Log tail</button><button data-monitor-tab="slowest" type="button">Slowest runs</button></div>
-<pre aria-live="polite" class="monitor-output" data-monitor-output=""></pre>
-</div>
 </section>
-
-<section aria-labelledby="wake-title" class="detail-section wake-section">
-<div class="detail-heading"><p class="eyebrow">Wake / 02</p><h2 id="wake-title">Wake Codex or OpenCode.</h2></div>
-<div class="wake-demo" data-wake-tabs="">
-<div aria-label="Wake demo client" class="wake-tabs" role="tablist">
-<button aria-controls="codex-wake-panel" aria-selected="true" id="codex-wake-tab" role="tab" type="button">Codex CLI</button>
-<button aria-controls="opencode-wake-panel" aria-selected="false" id="opencode-wake-tab" role="tab" type="button">OpenCode</button>
-</div>
-<div aria-labelledby="codex-wake-tab" class="wake-video-panel" id="codex-wake-panel" role="tabpanel">
-<video aria-label="Actual Codex CLI session showing a Vanth checkpoint wake and response" controls="" data-autoplay-demo="" loop="" muted="" playsinline="" poster="/assets/vanth-codex-wake.jpg" preload="metadata"><source src="/assets/vanth-codex-wake.mp4" type="video/mp4"/><a href="/assets/vanth-codex-wake.mp4">Download video</a></video>
-</div>
-<div aria-labelledby="opencode-wake-tab" class="wake-video-panel" hidden="" id="opencode-wake-panel" role="tabpanel">
-<video aria-label="Actual OpenCode TUI session showing a Vanth checkpoint wake and response" controls="" data-autoplay-demo="" loop="" muted="" playsinline="" poster="/assets/vanth-opencode-wake.jpg" preload="metadata"><source src="/assets/vanth-opencode-wake.mp4" type="video/mp4"/><a href="/assets/vanth-opencode-wake.mp4">Download video</a></video>
-</div>
-</div>
-</section>
-<section aria-labelledby="start-title" class="detail-section reveal"><div class="detail-heading"><div><h2 id="start-title">Try it.</h2></div></div><div class="code-wrap"><button class="copy-button" data-copy-target="vanth-quickstart" type="button">Copy commands</button><pre class="code-box" id="vanth-quickstart"><code>
+<section aria-labelledby="start-title" class="detail-section reveal"><div class="detail-heading"><p class="eyebrow">Connect / 03</p><div><h2 id="start-title">Connect your agent.</h2></div></div><div class="code-wrap"><button class="copy-button" data-copy-target="vanth-quickstart" type="button">Copy commands</button><pre class="code-box" id="vanth-quickstart"><code>
 uv tool install vanth
-
-
-$job = (vanth start --json --name demo -- ping -n 5 127.0.0.1 | ConvertFrom-Json).job_id
-vanth status $job
-vanth wait $job --events completed,failed
-vanth logs $job</code></pre></div></section>
+vanth setup</code></pre></div><p class="agent-prompt">Then ask: “Run the tests with Vanth. Wake me with the result.”</p></section>
 <section aria-labelledby="links-title" class="detail-section reveal"><div class="detail-heading"><p class="eyebrow">Go deeper / 04</p><div><h2 id="links-title">Explore.</h2></div></div><div class="detail-links"><a href="https://github.com/holdfast-labs/vanth/blob/master/docs/agent-tools.md">MCP tool reference <span>↗</span></a><a href="https://github.com/holdfast-labs/vanth#quick-start">Quick start <span>↗</span></a><a href="https://github.com/holdfast-labs/vanth/releases/latest">Latest release <span>↗</span></a><a href="https://github.com/holdfast-labs/vanth/issues">Issues &amp; feedback <span>↗</span></a></div></section>
 </div></div></main>
 <footer class="site-footer"><div class="shell footer-top"><a class="wordmark" href="/"><img alt="" height="34" src="/assets/mark.svg" width="34"/><span>holdfast<span class="wordmark-light">labs</span></span></a><div class="footer-links"><a href="/">Home</a><a href="/seekfs/">seekfs</a><a href="https://github.com/holdfast-labs/vanth">GitHub ↗</a></div></div><div class="shell footer-bottom"><span>©  Holdfast Labs</span></div></footer>
