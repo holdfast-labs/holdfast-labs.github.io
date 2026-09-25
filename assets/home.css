@@ -1,23 +1,9 @@
-.home{background:#0d1010;color:#f2f0e9;overflow-x:hidden}
+.home{background:#0b100d;color:#f2f5e8;overflow-x:hidden}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-.home .site-header{position:absolute;top:0;left:0;right:0;z-index:10;background:transparent;border-bottom:1px solid #f2f0e921}
+.home .site-header{position:absolute;top:0;left:0;right:0;z-index:10;background:linear-gradient(#0b100deb,#0b100d00);border:0}
 .home .wordmark img{background:#e9f0d2;border-radius:5px}
-.landing{position:relative;height:100svh;overflow:hidden;background:radial-gradient(ellipse 56% 60% at 50% 53%,#26342d 0,#101716 42%,#0b0e0e 100%);isolation:isolate}
-#landing-canvas,.landing-vignette{position:absolute;inset:0;width:100%;height:100%}
-#landing-canvas{z-index:0}
-.landing-vignette{z-index:1;pointer-events:none;background:linear-gradient(90deg,#090c0c99 0,transparent 23% 77%,#090c0c99 100%),linear-gradient(0deg,#090c0cba,transparent 24% 74%,#090c0c88)}
-.landing-symbol{position:absolute;z-index:3;top:50%;left:50%;width:min(105vh,83vw,1200px);aspect-ratio:1;transform:translate(-50%,-50%);display:grid;place-items:center;filter:drop-shadow(0 52px 55px #000b);animation:emblem-in 1.5s cubic-bezier(.14,.8,.2,1) both,emblem-float 8s ease-in-out 1.5s infinite}
-.landing-symbol:before{content:"";position:absolute;inset:15%;border-radius:50%;background:#d8ff38;filter:blur(100px);opacity:.18;z-index:-1;animation:glow-pulse 7s ease-in-out infinite}
-.landing-symbol img{width:100%;height:100%;object-fit:contain}
-.landing-edge{position:absolute;z-index:4;top:50%;color:#d9e4d488;font:500 10px/1 'DM Mono',Consolas,monospace;letter-spacing:.28em;white-space:nowrap}
-.landing-edge-left{left:2.2vw;writing-mode:vertical-rl;transform:translateY(-50%) rotate(180deg)}
-.landing-edge-right{right:2.2vw;writing-mode:vertical-rl;transform:translateY(-50%)}
-.landing-foot{position:absolute;z-index:5;left:50%;bottom:28px;transform:translateX(-50%);display:flex;align-items:center;gap:22px;font:500 11px/1 'DM Mono',Consolas,monospace;letter-spacing:.16em;text-transform:uppercase;color:#e7f2d3a8;white-space:nowrap}
-.landing-foot a{text-decoration:none;color:inherit;transition:color .2s}
-.landing-foot a:hover,.landing-foot a:focus-visible{color:#d9f977}
-.landing-foot-rule{width:76px;height:1px;background:linear-gradient(90deg,#d9f977,#eaf6df44)}
-@keyframes emblem-in{from{opacity:0;transform:translate(-50%,-43%) scale(.86);filter:blur(15px) drop-shadow(0 52px 55px #000b)}to{opacity:1;transform:translate(-50%,-50%) scale(1);filter:blur(0) drop-shadow(0 52px 55px #000b)}}
-@keyframes emblem-float{50%{transform:translate(-50%,-51.4%)}}
-@keyframes glow-pulse{50%{opacity:.28;transform:scale(1.13)}}
-@media(max-width:700px){.landing-symbol{width:min(135vw,100vh)}.landing-edge{display:none}.landing-foot{bottom:22px;font-size:10px;gap:14px}.landing-foot-rule{width:35px}}
-@media(prefers-reduced-motion:reduce){.landing-symbol,.landing-symbol:before{animation:none!important}}
+.landing{position:relative;height:100svh;min-height:620px;overflow:hidden;isolation:isolate}
+#landing-canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.landing:after{content:'';position:absolute;inset:0;pointer-events:none;background:linear-gradient(0deg,#0b100dcc,transparent 18% 85%,#0b100d70)}
+.landing-caption{position:absolute;z-index:2;bottom:27px;left:50%;transform:translateX(-50%);color:#cbd9c2;font:500 10px/1 'DM Mono',Consolas,monospace;letter-spacing:.18em;text-transform:uppercase;white-space:nowrap}
+@media(max-width:700px){.landing{min-height:500px}.landing-caption{bottom:22px;font-size:9px;letter-spacing:.12em}}

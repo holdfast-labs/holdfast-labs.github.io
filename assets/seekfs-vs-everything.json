@@ -1,0 +1,83 @@
+{
+  "scope": "One local Windows machine; complete CLI calls; not a general product ranking",
+  "fixture": {
+    "files": 20000,
+    "go_files": 5000,
+    "folders": 80
+  },
+  "indexing": {
+    "seekfs": "isolated resident service with only the generated fixture indexed",
+    "Everything": "installed Everything 1.4 service with its existing whole-volume NTFS index; queries scoped to the fixture path"
+  },
+  "versions": {
+    "seekfs": "seekfs dev commit=unknown date=unknown",
+    "Everything": "1.4.1.1024",
+    "ES": "1.1.0.38",
+    "seekfs_source_commit": "0b4d94154eb25951a2b052d8d6e85b1cd701a6fb"
+  },
+  "method": {
+    "repeats_per_case_and_tool": 90,
+    "warmups_per_case_and_tool": 10,
+    "timed": "Python perf_counter_ns around subprocess.run, including CLI startup, IPC, query, and captured output",
+    "ordering": "alternating tools in seeded randomized order per round",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "queries": {
+      "filename": "seekfs glob:search_01200.go; Everything fixture-scoped search_01200.go",
+      "extension_count": "seekfs ext:go count; Everything fixture-scoped ext:go result count",
+      "scoped_filename": "seekfs glob:search_01200.go dir:pkg-004; Everything pkg-004-scoped search_01200.go"
+    }
+  },
+  "cases": {
+    "Filename + extension": {
+      "result": "one matching file",
+      "seekfs": {
+        "median_ms": 23.31,
+        "p95_ms": 25.25,
+        "min_ms": 22.15,
+        "max_ms": 26.83,
+        "launches": 90
+      },
+      "Everything": {
+        "median_ms": 214.48,
+        "p95_ms": 239.45,
+        "min_ms": 200.47,
+        "max_ms": 257.12,
+        "launches": 90
+      }
+    },
+    "Extension count": {
+      "result": "5000",
+      "seekfs": {
+        "median_ms": 22.83,
+        "p95_ms": 25.11,
+        "min_ms": 21.56,
+        "max_ms": 26.13,
+        "launches": 90
+      },
+      "Everything": {
+        "median_ms": 134.15,
+        "p95_ms": 148.09,
+        "min_ms": 124.46,
+        "max_ms": 156.81,
+        "launches": 90
+      }
+    },
+    "Scoped filename": {
+      "result": "one matching file",
+      "seekfs": {
+        "median_ms": 31.28,
+        "p95_ms": 35.83,
+        "min_ms": 26.79,
+        "max_ms": 38.17,
+        "launches": 90
+      },
+      "Everything": {
+        "median_ms": 223.17,
+        "p95_ms": 275.0,
+        "min_ms": 201.61,
+        "max_ms": 408.55,
+        "launches": 90
+      }
+    }
+  }
+}

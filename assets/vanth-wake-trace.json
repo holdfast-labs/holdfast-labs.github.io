@@ -1,0 +1,18 @@
+{
+  "source": "Actual local Vanth 1.10.0 checkpoint delivery to a persisted Codex CLI thread",
+  "job_id": "job_2db670e247c2",
+  "event": {
+    "type": "checkpoint",
+    "message": "Index ready. Review the result.",
+    "created_at": "2026-09-25T05:14:24.601193Z"
+  },
+  "delivery": {
+    "delivery_id": "del_8e04bc5405e44a56",
+    "target_type": "codex_thread",
+    "status": "delivered",
+    "attempts": 1,
+    "delivered_at": "2026-09-25T05:14:38.134143Z"
+  },
+  "thread_id": "01a0d6fb-f076-7630-8983-53bc5cda63cc",
+  "note": "The thread resumed and responded. Its follow-up could not inspect this isolated demo job because the resumed CLI environment used a different VANTH_HOME."
+}
