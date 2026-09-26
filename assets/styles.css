@@ -128,6 +128,20 @@
 .detail-heading h2{font-size:clamp(2.2rem,4vw,4rem)}
 .detail-links a{font-size:.95rem}
 .code-box{line-height:1.7}
+.seekfs-agent-section .detail-heading p:last-child{margin:13px 0 0}
+.seekfs-agent-card{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);background:#101a14;color:#eaf3e6;box-shadow:16px 16px 0 #c9d2c0}
+.seekfs-agent-commands{padding:32px;display:flex;flex-direction:column}
+.seekfs-agent-commands>div{display:grid;gap:13px;padding:20px 0;border-bottom:1px solid #ffffff2e}
+.seekfs-agent-commands>div:first-child{padding-top:0}
+.seekfs-agent-commands span,.seekfs-json-head{font:600 .68rem 'DM Mono',monospace;letter-spacing:.08em;color:#a6be9d}
+.seekfs-agent-commands code{font:500 clamp(.7rem,.9vw,.86rem)/1.5 'DM Mono',Consolas,monospace;color:#eaf3e6;overflow-wrap:anywhere}
+.seekfs-agent-commands>p{margin:auto 0 0;padding-top:25px;font:400 .78rem 'DM Mono',monospace;color:#a6be9d}
+.seekfs-agent-commands>p code{color:#d9f977;font-size:inherit}
+.seekfs-json{min-width:0;background:#1b2a1e;border-left:1px solid #415a41}
+.seekfs-json-head{display:flex;justify-content:space-between;gap:15px;padding:25px 28px 14px}
+.seekfs-json-head span:last-child{color:#d9f977;text-align:right}
+.seekfs-json pre{margin:0;padding:12px 28px 30px;overflow:auto;font:500 .79rem/1.7 'DM Mono',Consolas,monospace;color:#e9f7e7;tab-size:2}
+.seekfs-comparison-section .comparison{margin-top:0}
 .comparison{margin-top:54px;background:#121d17;color:#f4f7ee;padding:clamp(22px,4vw,48px);overflow:hidden}
 .comparison-head{display:flex;justify-content:space-between;align-items:end;gap:25px}
 .comparison-head .eyebrow{color:#bddb9e}
@@ -170,3 +184,4 @@
 .agent-demo video{display:block;width:100%;aspect-ratio:1130/650;object-fit:contain;background:#080b09}
 .agent-prompt{margin:24px 0 0;font:600 1.07rem/1.6 'DM Mono',monospace;color:#37483b}
 @media(max-width:760px){.detail-heading{grid-template-columns:1fr}.comparison-head{display:block}.comparison-head>strong{display:block;margin-top:15px}.comparison-row{grid-template-columns:90px 1fr;gap:10px}.comparison-row>b{font-size:.72rem}.release-steps{grid-template-columns:1fr}.release-steps>a,.release-steps>div{min-height:82px}.agent-demo{box-shadow:10px 10px 0 #c9d2c0;padding:5px}.agent-demo-bar{font-size:.58rem}.agent-prompt{font-size:.9rem}}
+@media(max-width:760px){.seekfs-agent-card{grid-template-columns:1fr;box-shadow:10px 10px 0 #c9d2c0}.seekfs-agent-commands{padding:24px}.seekfs-agent-commands code{font-size:.76rem}.seekfs-json{border-left:0;border-top:1px solid #415a41}.seekfs-json-head{padding:20px 22px 10px}.seekfs-json pre{padding:10px 22px 24px;font-size:.72rem}}
