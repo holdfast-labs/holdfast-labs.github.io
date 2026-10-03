@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#0a0c0b"><meta name="description" content="seekfs is a Windows-first CLI and service for fast local file-name and full-path search.">
+  <meta name="theme-color" content="#0b0b09"><meta name="description" content="seekfs is a Windows-first CLI and service for fast local file-name and full-path search.">
   <title>seekfs — Fast local file discovery | Holdfast Labs</title>
   <link rel="icon" href="/assets/mark.svg" type="image/svg+xml"><link rel="stylesheet" href="/assets/styles.css"><script defer src="/assets/site.js"></script>
 </head>
@@ -26,7 +26,7 @@
 
     <section class="section" aria-labelledby="seekfs-agent-title">
       <div class="shell">
-        <div class="section-head reveal"><p class="label">For agents</p><h2 id="seekfs-agent-title">Find files. Return JSON.</h2><p>Scoped searches, bounded results, and paths an agent can use directly.</p></div>
+        <div class="section-head reveal"><p class="label">For agents</p><h2 id="seekfs-agent-title">Find files. <em>Return JSON.</em></h2><p>Scoped searches, bounded results, and paths an agent can use directly.</p></div>
         <div class="window json-card reveal">
           <div class="json-commands">
             <div><span>01 / Guide</span><code>seekfs agent</code></div>
@@ -53,7 +53,7 @@
 
     <section class="section" aria-labelledby="comparison-title">
       <div class="shell bench">
-        <div class="section-head reveal"><p class="label">Benchmark</p><h2 id="comparison-title">seekfs × Everything</h2><span class="bench-big">9.2×<small>faster</small></span><p>On a filename lookup, timing the complete CLI call: startup, IPC, query and output.</p><p class="bench-note">*20,000 files · 90 runs per query · median · one Windows PC. <a href="/assets/seekfs-vs-everything.json">Method &amp; raw data ↗</a></p></div>
+        <div class="section-head reveal"><p class="label">Benchmark</p><h2 id="comparison-title">seekfs <em>×</em> Everything</h2><span class="bench-big">9.2<em>×</em><small>faster</small></span><p>On a filename lookup, timing the complete CLI call: startup, IPC, query and output.</p><p class="bench-note">*20,000 files · 90 runs per query · median · one Windows PC. <a href="/assets/seekfs-vs-everything.json">Method &amp; raw data ↗</a></p></div>
         <div class="chart reveal" role="img" aria-label="Median query time in milliseconds. Filename: seekfs 23.3, Everything 214.5. Extension count: seekfs 22.8, Everything 134.2. Scoped name: seekfs 31.3, Everything 223.2.">
           <div class="chart-head"><span>Median time</span><span>Lower is faster</span></div>
           <div class="chart-group"><h4>Filename</h4><div class="chart-row is-us"><span>seekfs</span><div class="chart-track"><i style="--v:10.4%"></i></div><b>23.3 ms</b></div><div class="chart-row"><span>Everything</span><div class="chart-track"><i style="--v:96.1%"></i></div><b>214.5 ms</b></div></div>
@@ -65,7 +65,7 @@
 
     <section class="section" aria-labelledby="start-title">
       <div class="shell">
-        <div class="section-head reveal"><p class="label">Get started</p><h2 id="start-title">Download. Unzip. Open.</h2></div>
+        <div class="section-head reveal"><p class="label">Get started</p><h2 id="start-title">Download. Unzip. <em>Open.</em></h2></div>
         <div class="steps reveal">
           <a class="step" href="https://github.com/holdfast-labs/seekfs/releases/latest/download/seekfs-windows-amd64.zip"><h3>Download the ZIP <span aria-hidden="true">↓</span></h3><p>The latest Windows release, straight from GitHub.</p></a>
           <div class="step"><h3>Extract</h3><p>Unzip it anywhere you like. No installer.</p></div>
@@ -76,7 +76,7 @@
 
     <section class="section" aria-labelledby="links-title">
       <div class="shell">
-        <div class="section-head reveal"><p class="label">Go deeper</p><h2 id="links-title">Explore.</h2></div>
+        <div class="section-head reveal"><p class="label">Go deeper</p><h2 id="links-title"><em>Explore.</em></h2></div>
         <div class="link-grid reveal"><a href="https://github.com/holdfast-labs/seekfs/blob/main/search-syntax.md"><div>Search syntax<small>ext:, dir:, glob: and more</small></div><span aria-hidden="true">↗</span></a><a href="https://github.com/holdfast-labs/seekfs/blob/main/docs/SERVICE.md"><div>Service setup<small>Run the resident index</small></div><span aria-hidden="true">↗</span></a><a href="https://github.com/holdfast-labs/seekfs/blob/main/docs/BENCHMARKS.md"><div>Benchmarks<small>Full method and results</small></div><span aria-hidden="true">↗</span></a><a href="https://github.com/holdfast-labs/seekfs/issues"><div>Issues &amp; feedback<small>Report a bug or ask</small></div><span aria-hidden="true">↗</span></a></div>
       </div>
     </section>
