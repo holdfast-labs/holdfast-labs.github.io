@@ -1,6 +1,6 @@
 (() => {
-  // Hero art: a holdfast. Roots grow down from the soil line, grip buried stones,
-  // and two taproots reach for the product cards below. Click to regrow.
+  // Home stage: a holdfast. Roots grow down from the soil line, grip buried stones,
+  // and two taproots grow into the product links. Click to regrow.
   const canvas = document.getElementById('roots-canvas');
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
@@ -18,13 +18,18 @@
   }
   const turn = (to, from) => Math.atan2(Math.sin(to - from), Math.cos(to - from));
 
+  const sprouts = [...document.querySelectorAll('[data-root-target]')];
+  canvas.parentElement.classList.add('roots-on');
   function targets() {
     const box = canvas.getBoundingClientRect();
-    const cards = [...document.querySelectorAll('.product-card')].map((card) => card.getBoundingClientRect());
-    const xs = cards.length === 2 && Math.abs(cards[0].left - cards[1].left) > 40
-      ? cards.map((r) => r.left + r.width * .5 - box.left)
-      : [w * .3, w * .7];
-    return [{ x: xs[0], key: 'seekfs' }, { x: xs[1], key: 'vanth' }];
+    return sprouts.map((el) => {
+      const r = el.getBoundingClientRect();
+      return { x: r.left + r.width / 2 - box.left, y: r.top - box.top - 2, key: el.dataset.rootTarget, el };
+    });
+  }
+  function reach(key) {
+    const el = sprouts.find((s) => s.dataset.rootTarget === key);
+    if (el) el.classList.add('is-reached');
   }
 
   function grow() {
@@ -34,7 +39,7 @@
     segs = []; tips = []; labels = []; stones = [];
     const stoneCount = w < 700 ? 3 : 5;
     for (let i = 0; i < stoneCount; i++) {
-      stones.push({ x: w * (.1 + .8 * (i + r() * .6) / stoneCount), y: h * (.3 + r() * .45), r: (22 + r() * 34) * k, rot: r() * TAU, squash: .62 + r() * .3 });
+      stones.push({ x: w * (.1 + .8 * (i + r() * .6) / stoneCount), y: h * (.22 + r() * .42), r: (22 + r() * 34) * k, rot: r() * TAU, squash: .62 + r() * .3 });
     }
     const roots = [];
     const spawn = (x, y, a, width, tick, target) => roots.push({ x, y, a, w: width, tick, target, alive: true });
@@ -53,7 +58,7 @@
         if (!root.alive || root.tick > tick) continue;
         let a = root.a + (r() - .5) * .42;
         a += turn(DOWN, a) * (root.target ? .05 : .035);
-        if (root.target && root.y > h * .08) a += turn(Math.atan2(h * .9 - root.y, root.target.x - root.x), a) * (.06 + root.y / h * .25);
+        if (root.target && root.y > h * .06) a += turn(Math.atan2(root.target.y - root.y, root.target.x - root.x), a) * (.06 + root.y / root.target.y * .3);
         for (const s of stones) {
           const dx = root.x - s.x, dy = (root.y - s.y) / s.squash, d = Math.hypot(dx, dy), edge = s.r + root.w + 3;
           if (d < edge + 10) {
@@ -71,10 +76,10 @@
         root.w *= root.target ? .9975 : .988;
         if (!root.target && root.w > .7 && r() < .045) spawn(x, y, a + (r() < .5 ? -1 : 1) * (.45 + r() * .7), root.w * (.5 + r() * .2), tick + 1);
         if (root.target && r() < .05) spawn(x, y, a + (r() < .5 ? -1 : 1) * (.6 + r() * .6), root.w * .4, tick + 1);
-        if (root.w < .32 || y > h + 8 || x < -30 || x > w + 30 || (root.target && y > h * .84)) {
+        if (root.w < .32 || y > h + 8 || x < -30 || x > w + 30 || (root.target && y >= root.target.y - 4)) {
           root.alive = false;
           tips.push({ x, y, w: root.w, tick, key: root.target && root.target.key });
-          if (root.target) labels.push({ x, y, key: root.target.key });
+          if (root.target) labels.push({ x, y, key: root.target.key, tick });
         }
       }
     }
@@ -142,6 +147,8 @@
     ctx.drawImage(layer, 0, 0);
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
+    for (const lab of labels) if (lab.tick <= until) reach(lab.key);
+    if (growth >= 1) sprouts.forEach((el) => el.classList.add('is-reached'));
     const t = now / 1000;
     if (growth < 1) {
       // Glowing growth tips at the front of every root.
@@ -158,19 +165,12 @@
         ctx.fillStyle = `rgba(217,249,119,${.12 + pulse * .15 + near * .75})`;
         ctx.beginPath(); ctx.arc(tip.x, tip.y, 1.4 + near * 1.6, 0, TAU); ctx.fill();
       }
-      ctx.font = '500 11px "Geist Mono", ui-monospace, monospace';
-      ctx.textAlign = 'center';
       for (const lab of labels) {
         const [r, g, b] = colors[lab.key];
         ctx.fillStyle = `rgb(${r},${g},${b})`;
-        ctx.shadowColor = `rgba(${r},${g},${b},.8)`; ctx.shadowBlur = 16;
-        ctx.beginPath(); ctx.arc(lab.x, lab.y, 4, 0, TAU); ctx.fill();
+        ctx.shadowColor = `rgba(${r},${g},${b},.9)`; ctx.shadowBlur = 18;
+        ctx.beginPath(); ctx.arc(lab.x, lab.y, 3.5, 0, TAU); ctx.fill();
         ctx.shadowBlur = 0;
-        const tw = ctx.measureText(lab.key).width + 14, ty = lab.y - 30;
-        ctx.fillStyle = 'rgba(11,11,9,.92)'; ctx.strokeStyle = `rgba(${r},${g},${b},.45)`; ctx.lineWidth = 1;
-        ctx.beginPath(); ctx.roundRect ? ctx.roundRect(lab.x - tw / 2, ty, tw, 19, 6) : ctx.rect(lab.x - tw / 2, ty, tw, 19); ctx.fill(); ctx.stroke();
-        ctx.fillStyle = `rgb(${r},${g},${b})`; ctx.textBaseline = 'middle';
-        ctx.fillText(lab.key, lab.x, ty + 10);
       }
     }
     if (visible && !document.hidden && !reduce.matches) raf = requestAnimationFrame(frame);

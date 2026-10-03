@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#0b0b09"><meta name="description" content="vanth lets coding agents launch durable background jobs and return to the result.">
-  <title>vanth — Background jobs for agents | Holdfast Labs</title>
+  <meta name="theme-color" content="#0b0b09"><meta name="description" content="vanth lets coding agents launch durable background jobs and wakes them with the result.">
+  <title>vanth — Background jobs that wake your agent | Holdfast Labs</title>
   <link rel="icon" href="/assets/mark.svg" type="image/svg+xml"><link rel="stylesheet" href="/assets/styles.css"><script defer src="/assets/site.js"></script>
 </head>
 <body class="vanth-page">
@@ -16,18 +16,9 @@
       <div class="shell">
         <p class="label">02 / Background jobs for agents</p>
         <h1>vanth<span>.</span></h1>
-        <p class="page-dek">Agents start the work. <span class="grad">Vanth brings back the result.</span></p>
-        <p class="page-sub">Long builds, test suites and benchmarks run as durable background jobs. When one finishes, vanth wakes the agent that asked.</p>
+        <p class="page-dek">Agents start the work. <em>Vanth brings back the result.</em></p>
         <div class="button-row"><a class="button button-primary" href="https://github.com/holdfast-labs/vanth#quick-start">Get vanth <span aria-hidden="true">→</span></a><a class="button button-secondary" href="https://github.com/holdfast-labs/vanth">View source <span aria-hidden="true">↗</span></a></div>
-        <ul class="chips"><li>MCP tools</li><li>OpenCode</li><li>Codex CLI</li><li>Install with uv</li></ul>
-        <div class="hero-shot">
-          <div class="window agent-demo" data-agent-demo>
-            <div class="window-bar"><i></i><i></i><i></i><span class="window-title">Agent × Vanth</span><span><span class="live-dot" aria-hidden="true"></span>Recorded on real CLIs</span></div>
-            <div class="agent-tabs" role="tablist" aria-label="Agent recordings"><button aria-controls="agent-opencode" aria-selected="true" class="agent-tab is-active" id="tab-opencode" role="tab" type="button">OpenCode <span>Benchmark</span></button><button aria-controls="agent-codex" aria-selected="false" class="agent-tab" id="tab-codex" role="tab" type="button" tabindex="-1">Codex CLI <span>Test suite</span></button></div>
-            <div aria-labelledby="tab-opencode" id="agent-opencode" role="tabpanel"><video aria-label="OpenCode runs a seekfs benchmark through Vanth, receives a completion wake, and reads the measured result" controls data-autoplay-demo loop muted playsinline poster="/assets/vanth-opencode-real-wake.jpg" preload="metadata"><source src="/assets/vanth-opencode-real-wake.mp4" type="video/mp4"><a href="/assets/vanth-opencode-real-wake.mp4">Download video</a></video></div>
-            <div aria-labelledby="tab-codex" hidden id="agent-codex" role="tabpanel"><video aria-label="Codex CLI runs the seekfs test suite through Vanth and receives the completion wake" controls data-autoplay-demo loop muted playsinline poster="/assets/vanth-codex-real-wake.jpg" preload="metadata"><source src="/assets/vanth-codex-real-wake.mp4" type="video/mp4"><a href="/assets/vanth-codex-real-wake.mp4">Download video</a></video></div>
-          </div>
-        </div>
+        <div class="hero-shot"><div class="shine"><div class="window"><div class="window-bar"><i></i><i></i><i></i><span class="window-title">vanth · live job</span><span><span class="live-dot" aria-hidden="true"></span>Real run</span></div><video aria-label="Terminal recording: vanth starts a 160-query seekfs job, vanth-monitor charts its progress and latency live, then vanth wait returns on completion and the logs show the result" controls data-autoplay-demo loop muted playsinline poster="/assets/vanth-demo.jpg" preload="metadata"><source src="/assets/vanth-demo.webm" type="video/webm"><source src="/assets/vanth-demo.mp4" type="video/mp4"><a href="/assets/vanth-demo.mp4">Download video</a></video></div></div></div>
       </div>
     </section>
 
@@ -35,34 +26,33 @@
       <div class="shell">
         <div class="section-head reveal"><p class="label">How it works</p><h2 id="how-title">Hand it off. <em>Get woken up.</em></h2></div>
         <div class="steps reveal">
-          <div class="step"><h3>Ask</h3><p>Tell your agent to run the job with Vanth. It launches through vanth's MCP tools.</p></div>
-          <div class="step"><h3>Run</h3><p>The job runs in the background while vanth records its output, metrics and events.</p></div>
-          <div class="step"><h3>Wake</h3><p>When it finishes, vanth delivers the completion event back to the agent. No polling.</p></div>
+          <div class="step"><h3>Start</h3><p>Your agent launches the job through vanth.</p></div>
+          <div class="step"><h3>Run</h3><p>It runs in the background. Progress and metrics stream live.</p></div>
+          <div class="step"><h3>Wake</h3><p>When it finishes, vanth wakes the agent with the result.</p></div>
         </div>
       </div>
     </section>
 
-    <section class="section" aria-labelledby="demo-title">
+    <section class="section" aria-labelledby="agent-title">
       <div class="shell">
-        <div class="section-head reveal"><p class="label">Monitor</p><h2 id="demo-title">Watch <em>the work.</em></h2><p>vanth-monitor shows every job live: progress, plots, metrics and the event stream.</p></div>
-        <div class="window reveal"><div class="window-bar"><i></i><i></i><i></i><span class="window-title">vanth-monitor</span></div><video aria-label="Real vanth-monitor showing jobs, plots, metrics and events" controls data-autoplay-demo loop muted playsinline poster="/assets/vanth-poster.jpg" preload="metadata"><source src="/assets/vanth-monitor-demo.mp4" type="video/mp4"><a href="/assets/vanth-monitor-demo.mp4">Download video</a></video></div>
+        <div class="section-head reveal"><p class="label">Real agents</p><h2 id="agent-title">Works with <em>your agent.</em></h2></div>
+        <div class="window agent-demo reveal" data-agent-demo>
+            <div class="window-bar"><i></i><i></i><i></i><span class="window-title">Agent × Vanth</span><span><span class="live-dot" aria-hidden="true"></span>Recorded on real CLIs</span></div>
+            <div class="agent-tabs" role="tablist" aria-label="Agent recordings"><button aria-controls="agent-opencode" aria-selected="true" class="agent-tab is-active" id="tab-opencode" role="tab" type="button">OpenCode <span>Benchmark</span></button><button aria-controls="agent-codex" aria-selected="false" class="agent-tab" id="tab-codex" role="tab" type="button" tabindex="-1">Codex CLI <span>Test suite</span></button></div>
+            <div aria-labelledby="tab-opencode" id="agent-opencode" role="tabpanel"><video aria-label="OpenCode runs a seekfs benchmark through Vanth, receives a completion wake, and reads the measured result" controls data-autoplay-demo loop muted playsinline poster="/assets/vanth-opencode-real-wake.jpg" preload="metadata"><source src="/assets/vanth-opencode-real-wake.mp4" type="video/mp4"><a href="/assets/vanth-opencode-real-wake.mp4">Download video</a></video></div>
+            <div aria-labelledby="tab-codex" hidden id="agent-codex" role="tabpanel"><video aria-label="Codex CLI runs the seekfs test suite through Vanth and receives the completion wake" controls data-autoplay-demo loop muted playsinline poster="/assets/vanth-codex-real-wake.jpg" preload="metadata"><source src="/assets/vanth-codex-real-wake.mp4" type="video/mp4"><a href="/assets/vanth-codex-real-wake.mp4">Download video</a></video></div>
+          </div>
       </div>
     </section>
 
     <section class="section" aria-labelledby="start-title">
       <div class="shell">
-        <div class="section-head reveal"><p class="label">Connect</p><h2 id="start-title">Connect <em>your agent.</em></h2><p>Two commands. Then just ask.</p></div>
+        <div class="section-head reveal"><p class="label">Connect</p><h2 id="start-title">Two commands. <em>Then ask.</em></h2></div>
         <div class="window code-wrap reveal"><div class="window-bar"><i></i><i></i><i></i><span class="window-title">terminal</span><span><button class="copy-button" data-copy-target="vanth-quickstart" type="button">Copy</button></span></div><pre class="code-box"><code><span class="p" aria-hidden="true">$ </span>uv tool install vanth
 <span class="p" aria-hidden="true">$ </span>vanth setup</code></pre><pre id="vanth-quickstart" hidden>uv tool install vanth
 vanth setup</pre></div>
         <p class="agent-prompt reveal"><span>Then ask</span><q>Run the tests with Vanth. Wake me with the result.</q></p>
-      </div>
-    </section>
-
-    <section class="section" aria-labelledby="links-title">
-      <div class="shell">
-        <div class="section-head reveal"><p class="label">Go deeper</p><h2 id="links-title"><em>Explore.</em></h2></div>
-        <div class="link-grid reveal"><a href="https://github.com/holdfast-labs/vanth/blob/master/docs/agent-tools.md"><div>MCP tool reference<small>Every tool an agent can call</small></div><span aria-hidden="true">↗</span></a><a href="https://github.com/holdfast-labs/vanth#quick-start"><div>Quick start<small>Install and connect</small></div><span aria-hidden="true">↗</span></a><a href="https://github.com/holdfast-labs/vanth/releases/latest"><div>Latest release<small>Changelog and downloads</small></div><span aria-hidden="true">↗</span></a><a href="https://github.com/holdfast-labs/vanth/issues"><div>Issues &amp; feedback<small>Report a bug or ask</small></div><span aria-hidden="true">↗</span></a></div>
+        <nav class="link-row reveal" aria-label="vanth docs"><a href="https://github.com/holdfast-labs/vanth/blob/master/docs/agent-tools.md">MCP tools ↗</a><a href="https://github.com/holdfast-labs/vanth#quick-start">Quick start ↗</a><a href="https://github.com/holdfast-labs/vanth/releases/latest">Releases ↗</a><a href="https://github.com/holdfast-labs/vanth/issues">Issues ↗</a></nav>
       </div>
     </section>
   </main>

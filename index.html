@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#0b0b09"><meta name="description" content="Holdfast Labs builds seekfs and vanth: fast file discovery on Windows and durable background jobs for coding agents.">
+  <meta name="theme-color" content="#0b0b09"><meta name="description" content="Holdfast Labs makes small developer tools with deep roots: seekfs and vanth.">
   <title>Holdfast Labs — Small tools, deep roots</title>
   <link rel="icon" href="/assets/mark.svg" type="image/svg+xml"><link rel="stylesheet" href="/assets/styles.css"><script defer src="/assets/site.js"></script><script defer src="/assets/landing.js"></script>
 </head>
@@ -10,78 +10,23 @@
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header"><div class="shell nav-shell"><a class="wordmark" href="/" aria-label="Holdfast Labs home"><img src="/assets/mark.svg" alt="" width="26" height="26"><span>holdfast<span class="wordmark-light">labs</span></span></a><nav class="site-nav" aria-label="Main navigation"><a href="/seekfs/">seekfs</a><a href="/vanth/">vanth</a><a class="nav-github" href="https://github.com/holdfast-labs"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg><em>GitHub</em></a></nav></div></header>
 
-  <main id="main">
-    <section class="hero">
-      <div class="grid-bg" aria-hidden="true"></div>
-      <div class="shell hero-inner">
-        <a class="pill" href="/vanth/"><b>New</b> vanth wakes agents when jobs finish <span aria-hidden="true">→</span></a>
-        <h1>Small tools.<br><em>Deep roots.</em></h1>
-        <p class="hero-lede">Holdfast Labs makes focused developer tools that hold up under real work. <strong>seekfs</strong> finds any file on Windows in milliseconds. <strong>vanth</strong> runs durable background jobs and brings the result back to your coding agent.</p>
-        <div class="hero-actions"><a class="button button-primary" href="/seekfs/">Explore seekfs <span aria-hidden="true">→</span></a><a class="button button-secondary" href="/vanth/">Explore vanth <span aria-hidden="true">→</span></a><div class="install"><pre id="hero-install">uv tool install vanth</pre><button class="install-copy" data-copy-target="hero-install" type="button">Copy</button></div></div>
-      </div>
-      <div class="soil" aria-hidden="true"><div class="shell"><span><b>▲</b> What you use</span><span class="soil-hint">Click the roots to regrow them</span><span>What holds it up <b>▼</b></span></div></div>
-      <div class="roots" aria-hidden="true"><canvas id="roots-canvas"></canvas></div>
-    </section>
-
-    <section class="section products" aria-labelledby="products-title">
-      <div class="shell">
-        <div class="section-head section-head-split reveal"><div><p class="label">Products</p><h2 id="products-title">Two tools. <em>One job each.</em></h2></div><p>No platforms, no dashboards you didn't ask for. Each tool does one thing, fast, and gets out of the way.</p></div>
-        <div class="product-grid">
-          <a class="product-card reveal" href="/seekfs/">
-            <div class="product-card-copy"><p class="label">01 / Windows file search</p><h3>seekfs<i>.</i></h3><p>Instant file-name and full-path search for Windows, from a desktop UI or a CLI that answers in JSON.</p><span class="product-card-more">Explore seekfs <span aria-hidden="true">→</span></span></div>
-            <div class="product-card-visual" aria-hidden="true">
-              <div class="mini-bar"><i></i><i></i><i></i><span>seekfs</span></div>
-              <div class="mini-query">ext:go dir:cmd<span class="caret"></span><em>23 ms</em></div>
-              <ul class="mini-results"><li><b>bench.go</b><span>seekfs-src\cmd\seekfs</span></li><li><b>cli.go</b><span>seekfs-src\cmd\seekfs</span></li><li><b>config.go</b><span>seekfs-src\cmd\seekfs</span></li><li><b>count.go</b><span>seekfs-src\cmd\seekfs</span></li></ul>
-            </div>
-          </a>
-          <a class="product-card is-vanth reveal" href="/vanth/">
-            <div class="product-card-copy"><p class="label">02 / Background jobs for agents</p><h3>vanth<i>.</i></h3><p>Your agent starts the long job and keeps working. When it finishes, vanth wakes the agent with the result.</p><span class="product-card-more">Explore vanth <span aria-hidden="true">→</span></span></div>
-            <div class="product-card-visual" aria-hidden="true">
-              <div class="mini-bar"><i></i><i></i><i></i><span>agent session</span></div>
-              <ul class="mini-log">
-                <li><span class="who">you</span><span class="you">Run the tests with Vanth. Wake me with the result.</span></li>
-                <li><span class="who">agent</span><span class="tool">vanth_job_start</span><span class="ok">running</span></li>
-                <li><span class="who"></span><span class="dimmed">…keeps working on other things</span></li>
-                <li class="event"><span class="who">vanth</span><span>event: <b>completed</b> · exit_code 0</span></li>
-                <li><span class="who">agent</span><span class="tool">vanth_job_tail</span><span class="ok">read result</span></li>
-              </ul>
-            </div>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" aria-labelledby="bench-title">
-      <div class="shell bench">
-        <div class="section-head reveal"><p class="label">Benchmark</p><h2 id="bench-title">Done before you <em>finish typing.</em></h2><span class="bench-big">9.2<em>×</em><small>faster</small></span><p>seekfs against Everything on a filename lookup, timing the complete CLI call end to end.</p><p class="bench-note">20,000 files · 90 runs per query · median · one Windows PC. <a href="/assets/seekfs-vs-everything.json">Method &amp; raw data ↗</a></p></div>
-        <div class="chart reveal" role="img" aria-label="Median query time in milliseconds. Filename: seekfs 23.3, Everything 214.5. Extension count: seekfs 22.8, Everything 134.2. Scoped name: seekfs 31.3, Everything 223.2.">
-          <div class="chart-head"><span>Median time</span><span>Lower is faster</span></div>
-          <div class="chart-group"><h4>Filename</h4><div class="chart-row is-us"><span>seekfs</span><div class="chart-track"><i style="--v:10.4%"></i></div><b>23.3 ms</b></div><div class="chart-row"><span>Everything</span><div class="chart-track"><i style="--v:96.1%"></i></div><b>214.5 ms</b></div></div>
-          <div class="chart-group"><h4>Extension count</h4><div class="chart-row is-us"><span>seekfs</span><div class="chart-track"><i style="--v:10.2%"></i></div><b>22.8 ms</b></div><div class="chart-row"><span>Everything</span><div class="chart-track"><i style="--v:60.1%"></i></div><b>134.2 ms</b></div></div>
-          <div class="chart-group"><h4>Scoped name</h4><div class="chart-row is-us"><span>seekfs</span><div class="chart-track"><i style="--v:14%"></i></div><b>31.3 ms</b></div><div class="chart-row"><span>Everything</span><div class="chart-track"><i style="--v:100%"></i></div><b>223.2 ms</b></div></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" aria-labelledby="agents-title">
-      <div class="shell">
-        <div class="section-head reveal"><p class="label">Built for agents</p><h2 id="agents-title">Made for people. <em>Ready for agents.</em></h2></div>
-        <div class="feature-grid reveal">
-          <div><span class="tag is-seekfs">seekfs</span><h3>Structured output</h3><p><code>--json</code> on search and count, with bounded results and real paths an agent can act on.</p></div>
-          <div><span class="tag is-seekfs">seekfs</span><h3>Scoped by default</h3><p>Point a query at one tree with <code>--under</code> and cap it with <code>-n</code>. No flood of results.</p></div>
-          <div><span class="tag is-vanth">vanth</span><h3>Durable jobs</h3><p>Benchmarks, test suites and builds run in the background, outside the agent's turn.</p></div>
-          <div><span class="tag is-vanth">vanth</span><h3>Wake on result</h3><p>No polling. The completion event goes straight back to the agent that asked.</p></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="cta" aria-labelledby="cta-title">
-      <div class="glow" aria-hidden="true"></div>
-      <div class="shell"><h2 id="cta-title" class="reveal">Put down <em>roots.</em></h2><p class="reveal">Both tools are on GitHub. Try one in under a minute.</p><div class="button-row reveal"><a class="button button-primary" href="https://github.com/holdfast-labs/seekfs/releases/latest/download/seekfs-windows-amd64.zip">Download seekfs <span aria-hidden="true">↓</span></a><a class="button button-secondary" href="https://github.com/holdfast-labs/vanth#quick-start">vanth quick start <span aria-hidden="true">→</span></a></div></div>
-    </section>
+  <main id="main" class="stage">
+    <div class="grid-bg" aria-hidden="true"></div>
+    <div class="shell stage-copy">
+      <h1>Small tools.<br><em>Deep roots.</em></h1>
+      <p>Independent developer tools from Holdfast Labs.</p>
+    </div>
+    <div class="soil" aria-hidden="true"></div>
+    <div class="stage-roots">
+      <canvas id="roots-canvas" aria-hidden="true"></canvas>
+      <nav class="sprouts" aria-label="Products">
+        <a class="sprout" href="/seekfs/" data-root-target="seekfs"><b>seekfs</b><span>Find any file, instantly</span><i aria-hidden="true">→</i></a>
+        <a class="sprout is-vanth" href="/vanth/" data-root-target="vanth"><b>vanth</b><span>Jobs that wake your agent</span><i aria-hidden="true">→</i></a>
+      </nav>
+      <p class="stage-hint" aria-hidden="true">Click the roots to regrow</p>
+    </div>
   </main>
 
-  <footer class="site-footer"><div class="shell footer-top"><div><a class="wordmark" href="/"><img src="/assets/mark.svg" alt="" width="26" height="26"><span>holdfast<span class="wordmark-light">labs</span></span></a><p>Fast, focused tools for developers and the agents they run.</p></div><div class="footer-col"><h4>Products</h4><a href="/seekfs/">seekfs</a><a href="/vanth/">vanth</a></div><div class="footer-col"><h4>Source</h4><a href="https://github.com/holdfast-labs">GitHub</a><a href="https://github.com/holdfast-labs/seekfs/issues">seekfs issues</a><a href="https://github.com/holdfast-labs/vanth/issues">vanth issues</a></div></div><div class="shell footer-bottom"><span>© <span data-year>2026</span> Holdfast Labs</span><span>Built in the open.</span></div></footer>
+  <footer class="site-footer"><div class="shell footer-top footer-slim"><div><a class="wordmark" href="/"><img src="/assets/mark.svg" alt="" width="26" height="26"><span>holdfast<span class="wordmark-light">labs</span></span></a><p>Fast, focused tools for developers and the agents they run.</p></div><div class="footer-col"><h4>Products</h4><a href="/seekfs/">seekfs</a><a href="/vanth/">vanth</a></div><div class="footer-col"><h4>Source</h4><a href="https://github.com/holdfast-labs">GitHub</a><a href="https://github.com/holdfast-labs/seekfs/issues">seekfs issues</a><a href="https://github.com/holdfast-labs/vanth/issues">vanth issues</a></div></div><div class="shell footer-bottom"><span>© <span data-year>2026</span> Holdfast Labs</span><span>Built in the open.</span></div></footer>
 </body>
 </html>
