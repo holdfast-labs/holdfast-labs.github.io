@@ -54,13 +54,14 @@ document.addEventListener('keydown', (event) => {
   if (event.key === 'Escape') document.querySelectorAll('.products-menu[open]').forEach((menu) => { menu.open = false; });
 });
 document.querySelectorAll('[data-copy-target]').forEach((button) => {
+  const label = button.textContent;
   button.addEventListener('click', async () => {
     const source = document.getElementById(button.dataset.copyTarget);
     if (!source || !navigator.clipboard) return;
     try {
       await navigator.clipboard.writeText(source.textContent.trim());
       button.textContent = 'Copied';
-      window.setTimeout(() => { button.textContent = 'Copy commands'; }, 1800);
-    } catch { button.textContent = 'Select commands to copy'; }
+      window.setTimeout(() => { button.textContent = label; }, 1800);
+    } catch { button.textContent = 'Select to copy'; }
   });
 });

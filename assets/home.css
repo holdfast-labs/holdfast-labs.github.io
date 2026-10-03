@@ -1,9 +1,0 @@
-.home{background:#0b100d;color:#f2f5e8;overflow-x:hidden}
-.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-.home .site-header{position:absolute;top:0;left:0;right:0;z-index:10;background:linear-gradient(#0b100deb,#0b100d00);border:0}
-.home .wordmark img{background:#e9f0d2;border-radius:5px}
-.landing{position:relative;height:100svh;min-height:620px;overflow:hidden;isolation:isolate}
-#landing-canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
-.landing:after{content:'';position:absolute;inset:0;pointer-events:none;background:linear-gradient(0deg,#0b100dcc,transparent 18% 85%,#0b100d70)}
-.landing-caption{position:absolute;z-index:2;bottom:27px;left:50%;transform:translateX(-50%);color:#cbd9c2;font:500 10px/1 'DM Mono',Consolas,monospace;letter-spacing:.18em;text-transform:uppercase;white-space:nowrap}
-@media(max-width:700px){.landing{min-height:500px}.landing-caption{bottom:22px;font-size:9px;letter-spacing:.12em}}
