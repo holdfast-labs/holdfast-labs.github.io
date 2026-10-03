@@ -47,21 +47,37 @@ document.querySelectorAll('[data-agent-demo]').forEach((demo) => {
     });
   });
 });
-document.addEventListener('click', (event) => {
-  document.querySelectorAll('.products-menu[open]').forEach((menu) => { if (!menu.contains(event.target)) menu.open = false; });
-});
-document.addEventListener('keydown', (event) => {
-  if (event.key === 'Escape') document.querySelectorAll('.products-menu[open]').forEach((menu) => { menu.open = false; });
-});
 document.querySelectorAll('[data-copy-target]').forEach((button) => {
   const label = button.textContent;
   button.addEventListener('click', async () => {
     const source = document.getElementById(button.dataset.copyTarget);
     if (!source || !navigator.clipboard) return;
     try {
-      await navigator.clipboard.writeText(source.textContent.trim());
+      await navigator.clipboard.writeText(source.textContent.replace(/^\$\s*/gm, '').trim());
       button.textContent = 'Copied';
       window.setTimeout(() => { button.textContent = label; }, 1800);
     } catch { button.textContent = 'Select to copy'; }
   });
+});
+// Latest-release badge on product pages, from the public GitHub API. Stays hidden on any failure.
+document.querySelectorAll('[data-release]').forEach(async (badge) => {
+  const repo = badge.dataset.release, key = `release:${repo}`;
+  let release = null;
+  try { release = JSON.parse(sessionStorage.getItem(key) || 'null'); } catch {}
+  if (!release) {
+    try {
+      const res = await fetch(`https://api.github.com/repos/${repo}/releases/latest`, { headers: { Accept: 'application/vnd.github+json' } });
+      if (!res.ok) return;
+      const data = await res.json();
+      release = { tag: data.tag_name, url: data.html_url, at: data.published_at };
+      try { sessionStorage.setItem(key, JSON.stringify(release)); } catch {}
+    } catch { return; }
+  }
+  if (!release || !release.tag) return;
+  const days = Math.floor((Date.now() - new Date(release.at)) / 864e5);
+  const when = days <= 0 ? 'today' : days === 1 ? 'yesterday' : days < 30 ? `${days} days ago` : new Date(release.at).toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
+  badge.querySelector('b').textContent = release.tag;
+  badge.querySelector('span').textContent = `released ${when}`;
+  if (release.url) badge.href = release.url;
+  badge.hidden = false;
 });

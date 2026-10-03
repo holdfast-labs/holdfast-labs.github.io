@@ -2,9 +2,20 @@
 <html lang="en">
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#0b0b09"><meta name="description" content="seekfs is a Windows-first CLI and service for instant file-name and full-path search.">
   <title>seekfs — Find any file, instantly | Holdfast Labs</title>
-  <link rel="icon" href="/assets/mark.svg" type="image/svg+xml"><link rel="stylesheet" href="/assets/styles.css"><script defer src="/assets/site.js"></script>
+  <meta name="description" content="seekfs is a Windows-first CLI and service for instant file-name and full-path search.">
+  <meta name="theme-color" content="#0b0b09">
+  <link rel="canonical" href="https://holdfast-labs.github.io/seekfs/">
+  <meta property="og:type" content="website"><meta property="og:site_name" content="Holdfast Labs">
+  <meta property="og:title" content="seekfs — Find any file, instantly | Holdfast Labs"><meta property="og:description" content="seekfs is a Windows-first CLI and service for instant file-name and full-path search.">
+  <meta property="og:url" content="https://holdfast-labs.github.io/seekfs/"><meta property="og:image" content="https://holdfast-labs.github.io/assets/og/seekfs.png">
+  <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://holdfast-labs.github.io/assets/og/seekfs.png">
+  <link rel="icon" href="/assets/mark.svg" type="image/svg+xml"><link rel="icon" href="/assets/icons/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest">
+  <link rel="preload" href="/assets/fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/spline-sans-mono-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/styles.css"><script defer src="/assets/site.js"></script>
 </head>
 <body class="seekfs-page">
   <a class="skip-link" href="#main">Skip to content</a>
@@ -12,13 +23,12 @@
 
   <main id="main">
     <section class="page-hero">
-      <div class="grid-bg" aria-hidden="true"></div><div class="glow" aria-hidden="true"></div>
       <div class="shell">
-        <p class="label">01 / Windows file search</p>
-        <h1>seekfs<span>.</span></h1>
-        <p class="page-dek">Find any file <em>before you finish typing.</em></p>
-        <div class="button-row"><a class="button button-primary" href="https://github.com/holdfast-labs/seekfs/releases/latest/download/seekfs-windows-amd64.zip">Download for Windows <span aria-hidden="true">↓</span></a><a class="button button-secondary" href="https://github.com/holdfast-labs/seekfs">View source <span aria-hidden="true">↗</span></a></div>
-        <div class="hero-shot"><div class="shine"><div class="window"><div class="window-bar"><i></i><i></i><i></i><span class="window-title">seekfs · 24,359-entry index</span></div><video aria-label="Real terminal recording: seekfs counts 5,151 Go files in a 24,359-entry index, then runs name, path and JSON searches, each in under 55 milliseconds" controls data-autoplay-demo loop muted playsinline poster="/assets/seekfs-hero.jpg" preload="metadata"><source src="/assets/seekfs-hero.webm" type="video/webm"><source src="/assets/seekfs-hero.mp4" type="video/mp4"><a href="/assets/seekfs-hero.mp4">Download video</a></video></div></div></div>
+        <div class="page-hero-head">
+          <div><a class="release" data-release="holdfast-labs/seekfs" href="https://github.com/holdfast-labs/seekfs/releases/latest" hidden><b>New</b><span>Latest release</span></a><p class="label"><b>01</b> Windows file search</p><h1>seekfs<span>.</span></h1></div>
+          <div class="page-actions"><p class="page-dek">Find any file <em>before you finish typing.</em></p><div class="button-row"><a class="button button-primary" href="https://github.com/holdfast-labs/seekfs/releases/latest/download/seekfs-windows-amd64.zip">Download for Windows <span aria-hidden="true">↓</span></a><a class="button button-secondary" href="https://github.com/holdfast-labs/seekfs">Source <span aria-hidden="true">↗</span></a></div><p class="page-note">Windows x64 · ZIP · desktop UI and CLI</p></div>
+        </div>
+        <div class="hero-shot"><figure class="fig "><div class="fig-frame"><video aria-label="Terminal recording: seekfs counts 5,151 Go files in a 24,359-entry index, then runs name, path and JSON searches, each in under 60 milliseconds" controls data-autoplay-demo loop muted playsinline poster="/assets/seekfs-hero.jpg" preload="metadata"><source src="/assets/seekfs-hero.webm" type="video/webm"><source src="/assets/seekfs-hero.mp4" type="video/mp4"><a href="/assets/seekfs-hero.mp4">Download video</a></video></div><figcaption><span><b>Fig. 01</b>seekfs · 24,359-file index</span><span>Every query under 60 ms</span></figcaption></figure></div>
       </div>
     </section>
 
@@ -26,9 +36,9 @@
       <div class="shell">
         <figure class="chart reveal">
           <div class="chart-head"><h2 id="bench-title">seekfs <em>×</em> Everything</h2><span>Median ms · lower is faster</span></div>
-          <div class="chart-group"><h4>Filename</h4><div class="chart-row is-us"><span>seekfs</span><div class="chart-track"><i style="--v:10.4%"></i></div><b>23.3 ms</b></div><div class="chart-row"><span>Everything</span><div class="chart-track"><i style="--v:96.1%"></i></div><b>214.5 ms</b></div></div>
-          <div class="chart-group"><h4>Extension count</h4><div class="chart-row is-us"><span>seekfs</span><div class="chart-track"><i style="--v:10.2%"></i></div><b>22.8 ms</b></div><div class="chart-row"><span>Everything</span><div class="chart-track"><i style="--v:60.1%"></i></div><b>134.2 ms</b></div></div>
-          <div class="chart-group"><h4>Scoped name</h4><div class="chart-row is-us"><span>seekfs</span><div class="chart-track"><i style="--v:14%"></i></div><b>31.3 ms</b></div><div class="chart-row"><span>Everything</span><div class="chart-track"><i style="--v:100%"></i></div><b>223.2 ms</b></div></div>
+          <div class="chart-group"><h3>Filename</h3><div class="chart-row is-us"><span>seekfs</span><div class="chart-track"><i style="--v:10.4%"></i></div><b>23.3 ms</b></div><div class="chart-row"><span>Everything</span><div class="chart-track"><i style="--v:96.1%"></i></div><b>214.5 ms</b></div></div>
+          <div class="chart-group"><h3>Extension count</h3><div class="chart-row is-us"><span>seekfs</span><div class="chart-track"><i style="--v:10.2%"></i></div><b>22.8 ms</b></div><div class="chart-row"><span>Everything</span><div class="chart-track"><i style="--v:60.1%"></i></div><b>134.2 ms</b></div></div>
+          <div class="chart-group"><h3>Scoped name</h3><div class="chart-row is-us"><span>seekfs</span><div class="chart-track"><i style="--v:14%"></i></div><b>31.3 ms</b></div><div class="chart-row"><span>Everything</span><div class="chart-track"><i style="--v:100%"></i></div><b>223.2 ms</b></div></div>
         <figcaption>Complete CLI calls, median of 90 runs per query, one Windows PC, 20,000-file fixture. <a href="/assets/seekfs-vs-everything.json">Raw data ↗</a></figcaption></figure>
       </div>
     </section>
@@ -36,7 +46,7 @@
     <section class="section" aria-labelledby="ui-title">
       <div class="shell">
         <div class="section-head reveal"><p class="label">Desktop</p><h2 id="ui-title">Prefer a <em>window?</em></h2></div>
-        <div class="window reveal"><div class="window-bar"><i></i><i></i><i></i><span class="window-title">seekfs-ui</span></div><video aria-label="seekfs desktop UI searching a real repository" controls data-autoplay-demo loop muted playsinline poster="/assets/seekfs-poster.jpg" preload="metadata"><source src="/assets/seekfs-ui-demo.mp4" type="video/mp4"><a href="/assets/seekfs-ui-demo.mp4">Download video</a></video></div>
+        <figure class="fig reveal "><div class="fig-frame"><video aria-label="seekfs desktop UI searching a real repository" controls data-autoplay-demo loop muted playsinline poster="/assets/seekfs-poster.jpg" preload="none"><source src="/assets/seekfs-ui-demo.mp4" type="video/mp4"><a href="/assets/seekfs-ui-demo.mp4">Download video</a></video></div><figcaption><span><b>Fig. 02</b>seekfs-ui</span><span>Searching a real repository</span></figcaption></figure>
       </div>
     </section>
 
@@ -53,6 +63,6 @@
     </section>
   </main>
 
-  <footer class="site-footer"><div class="shell footer-top"><div><a class="wordmark" href="/"><img src="/assets/mark.svg" alt="" width="26" height="26"><span>holdfast<span class="wordmark-light">labs</span></span></a><p>Fast, focused tools for developers and the agents they run.</p></div><div class="footer-col"><h4>Products</h4><a href="/seekfs/">seekfs</a><a href="/vanth/">vanth</a></div><div class="footer-col"><h4>Source</h4><a href="https://github.com/holdfast-labs">GitHub</a><a href="https://github.com/holdfast-labs/seekfs/issues">seekfs issues</a><a href="https://github.com/holdfast-labs/vanth/issues">vanth issues</a></div></div><div class="shell footer-bottom"><span>© <span data-year>2026</span> Holdfast Labs</span><span>Built in the open.</span></div></footer>
+  <footer class="site-footer"><div class="shell footer-top"><div><a class="wordmark" href="/"><img src="/assets/mark.svg" alt="" width="26" height="26"><span>holdfast<span class="wordmark-light">labs</span></span></a><p>Small tools with deep roots.</p></div><div class="footer-col"><p class="footer-title">Products</p><a href="/seekfs/">seekfs</a><a href="/vanth/">vanth</a></div><div class="footer-col"><p class="footer-title">Source</p><a href="https://github.com/holdfast-labs">GitHub</a><a href="https://github.com/holdfast-labs/seekfs/releases">seekfs releases</a><a href="https://github.com/holdfast-labs/vanth/releases">vanth releases</a></div></div><div class="shell footer-bottom"><span>© <span data-year>2026</span> Holdfast Labs</span><span>Built in the open.</span></div></footer>
 </body>
 </html>
