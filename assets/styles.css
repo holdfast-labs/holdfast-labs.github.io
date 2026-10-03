@@ -96,7 +96,11 @@ h1 em,h2 em{font-size:1.08em;line-height:.9}
 .bench-note{font:400 .76rem/1.6 var(--mono);color:var(--dim);margin:20px 0 0}
 .bench-note a{color:var(--muted)}
 .chart{padding:32px;border:1px solid var(--line-2);border-radius:20px;background:var(--surface)}
-.chart-head{display:flex;justify-content:space-between;gap:16px;margin-bottom:8px;font:500 .72rem/1.3 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--dim)}
+.chart{max-width:880px;margin:0 auto}
+.chart-head{display:flex;justify-content:space-between;align-items:baseline;gap:16px;margin-bottom:8px;font:500 .72rem/1.3 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--dim)}
+.chart-head h2{margin:0;font:600 clamp(1.4rem,2.4vw,1.9rem)/1.1 var(--sans);letter-spacing:-.03em;text-transform:none;color:var(--text)}
+.chart figcaption{margin-top:18px;font:400 .76rem/1.6 var(--mono);color:var(--dim)}
+.chart figcaption a{color:var(--muted)}
 .chart-group{padding:20px 0;border-top:1px solid var(--line)}
 .chart-group:first-of-type{border-top:0}
 .chart-group h4{margin:0 0 12px;font:500 .78rem/1 var(--mono);color:var(--muted)}

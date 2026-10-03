@@ -18,19 +18,18 @@
         <h1>seekfs<span>.</span></h1>
         <p class="page-dek">Find any file <em>before you finish typing.</em></p>
         <div class="button-row"><a class="button button-primary" href="https://github.com/holdfast-labs/seekfs/releases/latest/download/seekfs-windows-amd64.zip">Download for Windows <span aria-hidden="true">↓</span></a><a class="button button-secondary" href="https://github.com/holdfast-labs/seekfs">View source <span aria-hidden="true">↗</span></a></div>
-        <div class="hero-shot"><div class="shine"><div class="window"><div class="window-bar"><i></i><i></i><i></i><span class="window-title">seekfs · 24,359-entry index</span><span><span class="live-dot" aria-hidden="true"></span>Real run</span></div><video aria-label="Real terminal recording: seekfs counts 5,151 Go files in a 24,359-entry index, then runs name, path and JSON searches, each in under 55 milliseconds" controls data-autoplay-demo loop muted playsinline poster="/assets/seekfs-hero.jpg" preload="metadata"><source src="/assets/seekfs-hero.webm" type="video/webm"><source src="/assets/seekfs-hero.mp4" type="video/mp4"><a href="/assets/seekfs-hero.mp4">Download video</a></video></div></div></div>
+        <div class="hero-shot"><div class="shine"><div class="window"><div class="window-bar"><i></i><i></i><i></i><span class="window-title">seekfs · 24,359-entry index</span></div><video aria-label="Real terminal recording: seekfs counts 5,151 Go files in a 24,359-entry index, then runs name, path and JSON searches, each in under 55 milliseconds" controls data-autoplay-demo loop muted playsinline poster="/assets/seekfs-hero.jpg" preload="metadata"><source src="/assets/seekfs-hero.webm" type="video/webm"><source src="/assets/seekfs-hero.mp4" type="video/mp4"><a href="/assets/seekfs-hero.mp4">Download video</a></video></div></div></div>
       </div>
     </section>
 
     <section class="section" aria-labelledby="bench-title">
-      <div class="shell bench">
-        <div class="section-head reveal"><p class="label">Benchmark</p><h2 id="bench-title">seekfs <em>×</em> Everything</h2><span class="bench-big">9.2<em>×</em><small>faster</small></span><p class="bench-note">Filename lookup, complete CLI call, median of 90 runs on one Windows PC. <a href="/assets/seekfs-vs-everything.json">Raw data ↗</a></p></div>
-        <div class="chart reveal" role="img" aria-label="Median query time in milliseconds. Filename: seekfs 23.3, Everything 214.5. Extension count: seekfs 22.8, Everything 134.2. Scoped name: seekfs 31.3, Everything 223.2.">
-          <div class="chart-head"><span>Median time</span><span>Lower is faster</span></div>
+      <div class="shell">
+        <figure class="chart reveal">
+          <div class="chart-head"><h2 id="bench-title">seekfs <em>×</em> Everything</h2><span>Median ms · lower is faster</span></div>
           <div class="chart-group"><h4>Filename</h4><div class="chart-row is-us"><span>seekfs</span><div class="chart-track"><i style="--v:10.4%"></i></div><b>23.3 ms</b></div><div class="chart-row"><span>Everything</span><div class="chart-track"><i style="--v:96.1%"></i></div><b>214.5 ms</b></div></div>
           <div class="chart-group"><h4>Extension count</h4><div class="chart-row is-us"><span>seekfs</span><div class="chart-track"><i style="--v:10.2%"></i></div><b>22.8 ms</b></div><div class="chart-row"><span>Everything</span><div class="chart-track"><i style="--v:60.1%"></i></div><b>134.2 ms</b></div></div>
           <div class="chart-group"><h4>Scoped name</h4><div class="chart-row is-us"><span>seekfs</span><div class="chart-track"><i style="--v:14%"></i></div><b>31.3 ms</b></div><div class="chart-row"><span>Everything</span><div class="chart-track"><i style="--v:100%"></i></div><b>223.2 ms</b></div></div>
-        </div>
+        <figcaption>Complete CLI calls, median of 90 runs per query, one Windows PC, 20,000-file fixture. <a href="/assets/seekfs-vs-everything.json">Raw data ↗</a></figcaption></figure>
       </div>
     </section>
 
