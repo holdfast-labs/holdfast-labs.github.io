@@ -3,7 +3,7 @@
 (() => {
   const host=document.querySelector('.root-stage');if(!host)return;
   const canvas=host.querySelector('canvas'),image=host.querySelector('img');
-  const gl=canvas.getContext('webgl',{alpha:false,antialias:false,powerPreference:'low-power'});if(!gl)return;
+  const gl=canvas.getContext('webgl',{alpha:false,antialias:false,preserveDrawingBuffer:true,powerPreference:'low-power'});if(!gl)return;
   const compile=(kind,source)=>{const s=gl.createShader(kind);gl.shaderSource(s,source);gl.compileShader(s);return gl.getShaderParameter(s,gl.COMPILE_STATUS)?s:null;};
   const vertex=compile(gl.VERTEX_SHADER,`attribute vec2 position;varying vec2 uv;void main(){uv=vec2((position.x+1.)*.5,(1.-position.y)*.5);gl_Position=vec4(position,0.,1.);}`);
   const fragment=compile(gl.FRAGMENT_SHADER,`
@@ -41,7 +41,8 @@
   const resize=()=>{const b=host.getBoundingClientRect(),d=Math.min(devicePixelRatio||1,1.5);canvas.width=Math.round(b.width*d);canvas.height=Math.round(b.height*d);gl.viewport(0,0,canvas.width,canvas.height);paint();};
   const loop=now=>{frame=0;if(paused||hidden||!loaded)return;if(now-last>=32){elapsed+=Math.min((now-last)/1000,.05);last=now;px+=(tx-px)*.05;py+=(ty-py)*.05;paint();}frame=requestAnimationFrame(loop);};
   const run=()=>{cancelAnimationFrame(frame);last=performance.now();paint();if(loaded&&!paused&&!hidden)frame=requestAnimationFrame(loop);};
-  const load=()=>{if(loaded||!image.naturalWidth)return;const texture=gl.createTexture();gl.bindTexture(gl.TEXTURE_2D,texture);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.LINEAR);gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,image);gl.uniform1i(u.sculpture,0);loaded=true;resize();host.dataset.ready='true';run();};
+  let loading=false;
+  const load=async()=>{if(loaded||loading||!image.naturalWidth)return;loading=true;try{await image.decode();}catch{loading=false;return;}const texture=gl.createTexture();gl.activeTexture(gl.TEXTURE0);gl.bindTexture(gl.TEXTURE_2D,texture);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.LINEAR);gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,image);gl.uniform1i(u.sculpture,0);loaded=true;resize();host.dataset.ready='true';run();};
   image.addEventListener('load',load,{once:true});load();
   window.addEventListener('holdfast:motion',e=>{paused=e.detail;run();});
   window.addEventListener('holdfast:product',e=>{active=e.detail?1:0;paint();});
