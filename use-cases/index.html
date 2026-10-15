@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head><meta name="darkreader-lock">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Use cases — Holdfast Labs</title>
+<meta name="description" content="How developers and agents use seekfs and vanth: coding agents, large repositories, ML and data jobs, and test suites.">
+<meta name="theme-color" content="#f5f5f2" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#111111" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://holdfast-labs.github.io/use-cases/">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Holdfast Labs">
+<meta property="og:title" content="Use cases — Holdfast Labs"><meta property="og:description" content="How developers and agents use seekfs and vanth: coding agents, large repositories, ML and data jobs, and test suites.">
+<meta property="og:url" content="https://holdfast-labs.github.io/use-cases/"><meta property="og:image" content="https://holdfast-labs.github.io/assets/og/home.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://holdfast-labs.github.io/assets/og/home.png">
+<link rel="icon" href="/assets/mark.svg" type="image/svg+xml"><link rel="icon" href="/assets/icons/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest">
+<link rel="preload" href="/assets/fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
+<script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t}catch(e){}</script>
+<link rel="stylesheet" href="/assets/styles.css"><link rel="stylesheet" href="/assets/studio.css"><link rel="stylesheet" href="/assets/sculpture.css">
+<script defer src="/assets/site.js"></script>
+<script defer src="/assets/studio.js"></script></head>
+<body class="page-usecases">
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="studio-header">
+<a class="studio-brand" href="/" aria-label="Holdfast Labs home"><img src="/assets/mark.svg?v=roots" alt="" width="32" height="32"><span>Holdfast Labs</span></a>
+<nav class="studio-nav" aria-label="Main navigation">
+<details class="studio-menu"><summary>Products <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m4 6 4 4 4-4" stroke="currentColor" stroke-width="1.5"/></svg></summary>
+<div class="studio-menu-panel">
+<a href="/seekfs/" data-root-product="seekfs"><strong>seekfs</strong><p>Instant file search. For you and your agents.</p></a>
+<a href="/vanth/" data-root-product="vanth"><strong>vanth</strong><p>Background jobs that wake your agent.</p></a>
+
+</div></details>
+<a class="nav-secondary" href="https://github.com/holdfast-labs">GitHub <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 12 12 4M4 4h8v8" stroke="currentColor" stroke-width="1.3"/></svg></a>
+</nav></header>
+<main id="main">
+<section class="hero hero-sub" aria-labelledby="hero-title">
+  <div class="wave wave-fade" data-wave="soft" aria-hidden="true"></div>
+  <div class="shell hero-inner">
+    <span class="pill glass hero-badge rise"><span class="dot"></span>Use cases</span>
+    <h1 id="hero-title" class="rise">Find files.<br><span class="soft">Run long jobs.</span></h1>
+    <p class="hero-dek rise">Four places where seekfs and vanth take the waiting out of the work, for people and for agents.</p>
+  </div>
+</section>
+
+<section class="section" id="agents" aria-labelledby="u-agents">
+  <div class="shell two-col">
+    <div>
+      <p class="eyebrow reveal">Coding agents</p>
+      <h2 id="u-agents" class="h2 h2-sm reveal" style="margin-top:10px">Give agents a file finder that answers in milliseconds</h2>
+      <p class="lede reveal">Agents look for files constantly, and a slow recursive listing costs both time and context. seekfs answers a scoped, filtered query in tens of milliseconds and returns exactly the paths, in JSON if asked.</p>
+      <ul class="bullets reveal">
+        <li><code>--under</code> keeps results inside the current workspace</li>
+        <li>Filter syntax small enough to put in an agent's instructions</li>
+        <li>Pairs with ripgrep: seekfs finds the file, rg finds the line</li>
+      </ul>
+      <p class="strip-link reveal"><a class="link-arrow" href="/seekfs/">Explore seekfs <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10m-4-4 4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></p>
+    </div>
+    <div class="win term reveal"><div class="win-bar"><span class="title">agent · F:\git\api</span><span class="win-ctl" aria-hidden="true"><i class="min"></i><i class="max"></i><i class="close"></i></span></div><div class="term-body"><span class="t-acc">›</span> Where do we define the billing protobufs?
+
+<span class="t-blue">●</span> <span class="t-fg">seekfs</span> --under F:\git\api --json <span class="t-acc">"ext:proto billing"</span>
+  <span class="t-dim">{"ok":true,"count":2,"results":[…]} · 19 ms</span>
+<span class="t-blue">●</span> <span class="t-fg">rg</span> -n "message Invoice" proto\billing.proto
+  <span class="t-dim">proto\billing.proto:14:message Invoice {</span>
+
+Billing types live in <span class="t-ok">proto\billing.proto</span>; <span class="t-fg">Invoice</span> is at line 14.
+The older <span class="t-ok">proto\legacy\billing_v1.proto</span> is unused.</div></div>
+  </div>
+</section>
+
+<section class="section" id="repos" aria-labelledby="u-repos">
+  <div class="shell two-col flip">
+    <div>
+      <p class="eyebrow reveal">Large repositories and drives</p>
+      <h2 id="u-repos" class="h2 h2-sm reveal" style="margin-top:10px">Search millions of paths in milliseconds</h2>
+      <p class="lede reveal">Monorepos, asset libraries and data drives grow past what Explorer search or a recursive listing can handle. The seekfs service keeps whole volumes resident and current, so the hundredth query is as quick as the first.</p>
+      <ul class="bullets reveal">
+        <li>Whole-volume indexes built from the MFT, kept live from the USN journal</li>
+        <li>Recursive folder sizes, so <code>size:&gt;10gb type:dir</code> finds what fills a disk</li>
+        <li>seekfs-ui when you would rather click than type</li>
+      </ul>
+      <p class="strip-link reveal"><a class="link-arrow" href="/seekfs/">Explore seekfs <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10m-4-4 4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></p>
+    </div>
+    <div class="win reveal"><div class="win-bar"><span class="title"><span class="mini-glyph glyph-seek" style="border-radius:4px"></span>size:&gt;10gb type:dir</span><span class="win-ctl" aria-hidden="true"><i class="min"></i><i class="max"></i><i class="close"></i></span></div><div class="mini-list" style="font-size:12.5px"><div class="hl"><span>F:\datasets\imagenet</span><span>148 GB</span></div><div><span>F:\captures</span><span>61 GB</span></div><div><span>C:\Users\abhi\AppData\Local\Docker</span><span>44 GB</span></div><div><span>F:\git\game\Library</span><span>23 GB</span></div><div><span>C:\Users\abhi\.cache\huggingface</span><span>19 GB</span></div><div><span>F:\git\monorepo\node_modules</span><span>12 GB</span></div><div style="border:0"><span style="color:var(--muted)">6 results · 29.4 ms</span><span>23.7M indexed</span></div></div></div>
+  </div>
+</section>
+
+<section class="section" id="ml" aria-labelledby="u-ml">
+  <div class="shell two-col">
+    <div>
+      <p class="eyebrow reveal">ML and data jobs</p>
+      <h2 id="u-ml" class="h2 h2-sm reveal" style="margin-top:10px">Train overnight. Read the curve in the morning.</h2>
+      <p class="lede reveal">Training runs, ETL and batch processing outlive terminals and agent sessions. vanth keeps them running detached, charts their metrics live, and can capture logs and register outputs as versioned artifacts with lineage.</p>
+      <ul class="bullets reveal">
+        <li>Wake on checkpoints, not only at the end</li>
+        <li>Compare metrics across reruns with <code>job_metric_compare</code></li>
+        <li>Configure pools to limit concurrent GPU jobs</li>
+      </ul>
+      <p class="strip-link reveal"><a class="link-arrow" href="/vanth/">Explore vanth <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10m-4-4 4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></p>
+    </div>
+    <div class="win term reveal"><div class="win-bar"><span class="title">vanth-monitor · train-resnet</span><span class="win-ctl" aria-hidden="true"><i class="min"></i><i class="max"></i><i class="close"></i></span></div><div class="mon" style="height:300px;grid-template-rows:auto auto 1fr"><div><div class="mon-row"><span><b>job_19bd04</b> · train.py --epochs 40</span><span>95%</span></div><div class="bar" style="margin-top:6px"><i style="width:95%"></i></div></div><div class="mon-row"><span>loss <b>0.214</b></span><span>val_loss <b>0.236</b></span><span>acc <b>0.941</b></span></div><div class="mon-chart"><span class="lbl">loss · val_loss</span><svg viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,8 C10,40 18,55 30,64 S55,78 70,82 S90,86 100,87" fill="none" stroke="#b5d36a" stroke-width="1.6" vector-effect="non-scaling-stroke"/><path d="M0,14 C10,44 20,60 32,70 S58,82 72,84 S90,88 100,89" fill="none" stroke="#e8b56a" stroke-width="1.3" stroke-dasharray="3 3" vector-effect="non-scaling-stroke"/></svg></div></div></div>
+  </div>
+</section>
+
+<section class="section" id="tests" aria-labelledby="u-tests">
+  <div class="shell two-col flip">
+    <div>
+      <p class="eyebrow reveal">Tests and CI</p>
+      <h2 id="u-tests" class="h2 h2-sm reveal" style="margin-top:10px">Run the suite in the background. Get woken with the verdict.</h2>
+      <p class="lede reveal">Long test suites are where agents waste the most turns, checking whether they are done yet. With vanth the agent starts the suite, goes idle, and is resumed with the exit code, a summary and the failing output.</p>
+      <ul class="bullets reveal">
+        <li><code>--wake-me</code> covers completed, failed, timeout, cancelled and orphaned</li>
+        <li>Flaky-test analytics from repeated runs of the same job</li>
+        <li>Kill attribution says who stopped a job and why</li>
+      </ul>
+      <p class="strip-link reveal"><a class="link-arrow" href="/vanth/">Explore vanth <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10m-4-4 4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></p>
+    </div>
+    <div style="display:grid;gap:12px;justify-items:center" class="reveal">
+      <div class="toast in" style="position:relative;inset:auto;width:min(100%,420px);font-size:14px;padding:16px 18px;transform:rotate(-1.5deg)"><div class="t-head"><i class="glyph-vanth"></i>vanth · 6m ago</div><b>job_c41e09 failed · exit 1</b><span>3 of 1,204 tests failed in payments/ledger. Woke the agent with the summary.</span></div>
+      <div class="toast in" style="position:relative;inset:auto;width:min(100%,420px);font-size:14px;padding:16px 18px;transform:rotate(1deg)"><div class="t-head"><i class="glyph-vanth"></i>vanth · 1m ago</div><b>job_c52a17 completed · exit 0</b><span>1,204 passed after the fix in 4m 51s. Rerun of job_c41e09.</span></div>
+      <div class="win term" style="width:min(100%,420px)"><div class="term-body"><span class="t-dim">$</span> vanth start --wake-me -- npm test
+<span class="t-ok">job_c41e09</span> <span class="t-dim">started · wake target resolved</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta" aria-labelledby="s-cta">
+  <div class="wave" data-wave="cta" aria-hidden="true"></div>
+  <div class="shell">
+    <h2 id="s-cta" class="h2 reveal">Find yours.</h2>
+    <p class="lede reveal">Choose a tool and follow its setup guide.</p>
+    <div class="hero-actions reveal"><a class="btn btn-ink btn-lg" href="/seekfs/">Explore tools</a><a class="btn btn-ghost btn-lg" href="https://github.com/holdfast-labs">Read the docs <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10m-4-4 4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+  </div>
+</section>
+</main>
+<footer class="studio-footer"><div class="studio-footer-inner"><span>© <span data-year>2026</span> Holdfast Labs</span><nav aria-label="Footer"><a href="/changelog/">Changelog</a><a href="/about/">About</a><a href="https://github.com/holdfast-labs">GitHub</a></nav></div></footer>
+</body>
+</html>

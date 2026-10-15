@@ -1,0 +1,5 @@
+exclude:
+  - DESIGN.md
+  - PRODUCT.md
+  - .impeccable
+  - .taste-skill
