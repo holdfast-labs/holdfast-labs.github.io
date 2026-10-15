@@ -44,7 +44,8 @@
   let loading=false;
   const load=async()=>{if(loaded||loading||!image.naturalWidth)return;loading=true;try{await image.decode();}catch{loading=false;return;}const texture=gl.createTexture();gl.activeTexture(gl.TEXTURE0);gl.bindTexture(gl.TEXTURE_2D,texture);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.LINEAR);gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,image);gl.uniform1i(u.sculpture,0);loaded=true;resize();host.dataset.ready='true';run();};
   image.addEventListener('load',load,{once:true});load();
-  window.addEventListener('holdfast:motion',e=>{paused=e.detail;run();});
+  const motionPreference=matchMedia('(prefers-reduced-motion:reduce)');
+  motionPreference.addEventListener('change',e=>{paused=e.matches;run();});
   window.addEventListener('holdfast:product',e=>{active=e.detail?1:0;paint();});
   window.addEventListener('themechange',paint);
   document.addEventListener('visibilitychange',()=>{hidden=document.hidden;run();});

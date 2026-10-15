@@ -124,7 +124,7 @@ The artwork supplies depth through branching fibers, shadow and glints. Product 
 
 ## Shapes
 
-Actions use the action radius; recordings use the recording radius. Code and install wells are square. The mark is a simple unfilled branching SVG with rounded line ends (1.2 stroke), not a filled badge. Rounded motion-track and thumb geometry communicates switch state.
+Actions use the action radius; recordings use the recording radius. Code and install wells are square. The mark is a simple unfilled branching SVG with rounded line ends (1.2 stroke), not a filled badge. The homepage footer has no manual appearance or motion controls.
 
 ## Components
 
@@ -151,4 +151,4 @@ Not canonized: retained legacy route styles are compatibility code, not new-worl
 
 ## Approved publication adjustments
 
-The product dropdown contains only seekfs and vanth. Standalone install, documentation and benchmark pages were removed; direct release, project reference and benchmark JSON links remain on product pages. Appearance follows prefers-color-scheme on first paint and subsequent system changes, ignoring previous localStorage overrides. The separate Motion control remains a working animation pause button.
+The product dropdown contains only seekfs and vanth. Standalone install, documentation and benchmark pages were removed; direct release, project reference and benchmark JSON links remain on product pages. Appearance follows prefers-color-scheme on first paint and subsequent system changes, ignoring previous localStorage overrides. No manual appearance or motion control is shown. Animation follows the system reduced-motion preference, including changes during the visit.

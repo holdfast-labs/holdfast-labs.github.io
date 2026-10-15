@@ -35,22 +35,4 @@
     link.addEventListener('blur', () => emit(''));
   });
   document.querySelectorAll('[data-copy]').forEach((button) => button.setAttribute('aria-live', 'polite'));
-  if (document.querySelector('.root-stage')) {
-    const button = document.createElement('button');
-    button.type = 'button';
-    const reduced = matchMedia('(prefers-reduced-motion:reduce)');
-    let paused = reduced.matches;
-    const label = () => {
-      button.innerHTML = 'Motion <span class="motion-track" aria-hidden="true"></span>';
-      button.setAttribute('data-motion', '');
-      button.setAttribute('aria-label', paused ? 'Play motion' : 'Pause motion');
-      button.title = paused ? 'Play motion' : 'Pause motion';
-      button.setAttribute('aria-pressed', String(!paused));
-      window.dispatchEvent(new CustomEvent('holdfast:motion', {detail:paused}));
-    };
-    button.addEventListener('click', () => { paused = !paused; label(); });
-    reduced.addEventListener('change', () => { paused = reduced.matches; label(); });
-    document.querySelector('.studio-utilities').append(button);
-    label();
-  }
 })();
