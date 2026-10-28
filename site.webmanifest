@@ -16,5 +16,5 @@
   "theme_color": "#f2f2ef",
   "background_color": "#f2f2ef",
   "display": "browser",
-  "description": "Small developer tools with deep roots: seekfs and vanth."
+  "description": "Small developer tools with deep roots: seekfs, vanth and wgrep."
 }

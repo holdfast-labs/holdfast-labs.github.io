@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head><meta name="darkreader-lock">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>wgrep (wg) — Semantic and exact code search for agents</title>
+<meta name="description" content="wg is one local binary for code search: semantic ranking with a live index, or exact text and regex through built-in ripgrep 15.1. Linux, macOS and Windows.">
+<meta name="theme-color" content="#f5f5f2" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#111111" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://holdfast.sh/wgrep/">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Holdfast Labs">
+<meta property="og:title" content="wgrep (wg) — Semantic and exact code search for agents"><meta property="og:description" content="wg is one local binary for code search: semantic ranking with a live index, or exact text and regex through built-in ripgrep 15.1. Linux, macOS and Windows.">
+<meta property="og:url" content="https://holdfast.sh/wgrep/"><meta property="og:image" content="https://holdfast.sh/assets/og/wgrep.png">
+<meta property="og:image:width" content="1280"><meta property="og:image:height" content="640">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://holdfast.sh/assets/og/wgrep.png">
+<link rel="icon" href="/assets/mark.svg" type="image/svg+xml"><link rel="icon" href="/assets/icons/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest">
+<link rel="preload" href="/assets/fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
+
+<link rel="stylesheet" href="/assets/styles.css"><link rel="stylesheet" href="/assets/studio.css"><link rel="stylesheet" href="/assets/sculpture.css?v=2">
+<script defer src="/assets/site.js"></script>
+
+<script>document.documentElement.dataset.theme=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"</script>
+<script defer src="/assets/studio.js?v=3"></script></head>
+<body class="studio-wgrep"><a class="skip-link" href="#main">Skip to content</a>
+<header class="studio-header">
+<a class="studio-brand" href="/" aria-label="Holdfast Labs home"><img src="/assets/mark.svg?v=roots" alt="" width="32" height="32"><span>Holdfast Labs</span></a>
+<nav class="studio-nav" aria-label="Main navigation">
+<details class="studio-menu"><summary>Products <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m4 6 4 4 4-4" stroke="currentColor" stroke-width="1.5"/></svg></summary>
+<div class="studio-menu-panel">
+<a href="/seekfs/" data-root-product="seekfs"><strong>seekfs</strong><p>Instant file search. For you and your agents.</p></a>
+<a href="/vanth/" data-root-product="vanth"><strong>vanth</strong><p>Background jobs that wake your agent.</p></a>
+<a href="/wgrep/" data-root-product="wgrep"><strong>wgrep</strong><p>Code search. Semantic or exact.</p></a>
+
+</div></details>
+<a href="/guides/">Guides</a>
+<a class="nav-secondary" href="https://github.com/holdfast-labs">GitHub <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 12 12 4M4 4h8v8" stroke="currentColor" stroke-width="1.3"/></svg></a>
+</nav></header>
+<main id="main">
+<section class="studio-shell product-intro" aria-labelledby="product-title"><h1 id="product-title">wgrep</h1><div class="product-summary"><p>Semantic and exact code search.<br>One local binary for you and your agents.</p><div class="product-actions"><a class="studio-action" href="https://github.com/holdfast-labs/wgrep/releases/latest">Download wg</a><a class="studio-text-link" href="https://github.com/holdfast-labs/wgrep">Source <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h12m-5-5 5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div><div class="product-platform">Linux, macOS, Windows · MIT</div></div></section>
+<section class="studio-shell product-watch" aria-label="wgrep recordings">
+<div class="recording-tabs" data-tabs role="tablist" aria-label="wgrep recordings"><button type="button" role="tab" id="t-quickstart" aria-controls="p-quickstart" aria-selected="true">Quick start</button><button type="button" role="tab" id="t-live" aria-controls="p-live" aria-selected="false" tabindex="-1">Live index</button></div>
+<div id="p-quickstart" role="tabpanel" aria-labelledby="t-quickstart"><figure class="recording"><video controls data-autoplay muted loop playsinline preload="metadata" width="1200" height="314" poster="/assets/wgrep-quickstart.jpg" aria-label="wg attaches a repository, runs a semantic query and an exact text search"><source src="/assets/wgrep-quickstart.mp4" type="video/mp4"><a href="/assets/wgrep-quickstart.mp4">Download the recording</a></video></figure></div>
+<div id="p-live" role="tabpanel" aria-labelledby="t-live" hidden><figure class="recording"><video controls data-autoplay muted loop playsinline preload="metadata" width="1200" height="178" poster="/assets/wgrep-live.jpg" aria-label="wg finds an edit before the next prompt returns"><source src="/assets/wgrep-live.mp4" type="video/mp4"><a href="/assets/wgrep-live.mp4">Download the recording</a></video></figure></div>
+<p class="recording-caption"><span>Recorded terminal sessions at 1x; the initial index build is omitted.</span><span>Use fullscreen for a closer look.</span></p>
+</section>
+<section class="product-section tint" aria-labelledby="routes-title"><div class="studio-shell agent-layout">
+<div class="agent-copy"><h2 id="routes-title">Ask by intent. Or match exact text.</h2><p>Semantic search ranks code chunks from a live index. A ripgrep flag switches to the exact engine inside the same binary.</p><ul class="agent-points"><li><code>wg "where do requests get validated"</code>: ranked shortlist.</li><li><code>wg -F "decodePacketV17" .</code>: exact text, ripgrep 15.1.</li><li><code>wg up</code>: attach a root and build both indexes.</li><li><code>wg status --json</code>: roots, counts and health.</li></ul><div class="resource-links"><a href="/guides/local-code-search/">Guide: search by meaning and exact text</a><a href="https://github.com/holdfast-labs/wgrep/blob/main/docs/agent-guide.md">Agent guide</a><a href="https://github.com/holdfast-labs/wgrep/blob/main/docs/usage.md">Usage</a><a href="https://github.com/holdfast-labs/wgrep/blob/main/docs/benchmarks.md">Benchmarks</a></div></div>
+<div><span class="code-note">Semantic, the default</span><pre class="studio-code"><code class="code-command">wg "where do incoming requests get validated" --top 3</code></pre>
+<div class="agent-output"><span class="code-note">Exact text, with a path</span><pre class="studio-code"><code class="code-command">wg -F "decodePacketV17" .</code></pre></div></div>
+</div></section>
+<section class="product-section" aria-labelledby="fresh-title"><div class="studio-shell"><div class="section-intro"><h2 id="fresh-title">Built for code that changes.</h2><p>One watcher per root updates both indexes. An edit becomes searchable without a restart.</p></div>
+<ol class="job-flow"><li><h3>Attach a root</h3><p><code>wg up</code> indexes the nearest Git repository or the current directory.</p></li><li><h3>Choose the route</h3><p>Use semantic ranking for intent. Use <code>-F</code> or <code>-e</code> for literal or regex matching.</p></li><li><h3>Keep the daemon</h3><p>One daemon serves up to 32 attached roots with one shared model pool.</p></li></ol>
+<p style="margin-top:44px">Semantic results are ranked, not exhaustive. A correct answer can fall outside the shortlist. The text index only removes impossible files, so common terms still scan much of the tree.</p>
+</div></section>
+<section class="product-section" aria-labelledby="evidence-title"><div class="studio-shell"><div class="section-intro"><h2 id="evidence-title">Faster on warm queries, edits, and rare terms.</h2><p>Warm semantic query, p50: 25.2 ms for wgrep and 565.7 ms for the sgrep CLI. One-file edit to first correct result, p50: 99.2 ms for wgrep and 21.8 s for sgrep. Rare identifier text search, p50: 6.0 ms for wgrep and 63.8 ms for ripgrep 15.1, with byte-identical output under <code>--sort path</code>.</p></div>
+<div class="resource-links"><a href="https://github.com/holdfast-labs/wgrep/blob/main/docs/benchmarks.md">Method, limits, and source</a><a href="https://github.com/holdfast-labs/wgrep/blob/main/docs/usage.md#large-repositories">Large repository results</a></div>
+<p style="margin-top:34px">13,332 Rust files on a Debian 13 VPS with 4 vCPU. The three measures use different workloads.</p>
+</div></section>
+<section class="install-band tint" aria-labelledby="install-title"><div class="studio-shell"><div><h2 id="install-title">Unpack. Attach. Search.</h2><p>Download the archive for your platform, add <code>bin</code> to <code>PATH</code>, then attach a repository. The first <code>wg up</code> downloads about 56 MB of model and parser assets.</p><div class="resource-links"><a href="https://github.com/holdfast-labs/wgrep/releases/latest">Downloads</a><a href="https://github.com/holdfast-labs/wgrep#install">Install details</a></div></div><div class="install-commands"><div class="install-command"><code>wg up</code><button type="button" data-copy="wg up">Copy</button></div><div class="install-command"><code>wg "where do requests get validated"</code><button type="button" data-copy="wg &quot;where do requests get validated&quot;">Copy</button></div></div></div></section>
+</main>
+<footer class="studio-footer"><div class="studio-footer-inner"><span>© <span data-year>2026</span> Holdfast Labs</span><nav aria-label="Footer"><a href="/guides/">Guides</a><a href="/changelog/">Changelog</a><a href="/about/">About</a><a href="https://github.com/holdfast-labs">GitHub</a></nav></div></footer>
+</body></html>

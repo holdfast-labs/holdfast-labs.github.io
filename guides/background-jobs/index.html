@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head><meta name="darkreader-lock">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Long background jobs that wake your agent with vanth</title>
+<meta name="description" content="Install vanth, start a detached job, inspect the result, and wake an OpenCode or Codex session on completion or checkpoints. Complete example and limits.">
+<meta name="theme-color" content="#f5f5f2" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#111111" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://holdfast.sh/guides/background-jobs/">
+<meta property="og:type" content="article"><meta property="og:site_name" content="Holdfast Labs">
+<meta property="og:title" content="Long background jobs that wake your agent with vanth"><meta property="og:description" content="Install vanth, start a detached job, inspect the result, and wake an OpenCode or Codex session on completion or checkpoints. Complete example and limits.">
+<meta property="og:url" content="https://holdfast.sh/guides/background-jobs/"><meta property="og:image" content="https://holdfast.sh/assets/og/vanth.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://holdfast.sh/assets/og/vanth.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://holdfast.sh/guides/background-jobs/#article",
+      "headline": "Long background jobs that wake your agent with vanth",
+      "description": "Install vanth, start a detached job, inspect the result, and wake an OpenCode or Codex session on completion or checkpoints. Complete example and limits.",
+      "url": "https://holdfast.sh/guides/background-jobs/",
+      "mainEntityOfPage": {"@type": "WebPage", "@id": "https://holdfast.sh/guides/background-jobs/"},
+      "author": {"@type": "Organization", "name": "Holdfast Labs", "url": "https://holdfast.sh/"},
+      "publisher": {
+        "@type": "Organization",
+        "name": "Holdfast Labs",
+        "url": "https://holdfast.sh/",
+        "logo": {"@type": "ImageObject", "url": "https://holdfast.sh/assets/icons/icon-512.png", "width": 512, "height": 512}
+      },
+      "image": {"@type": "ImageObject", "url": "https://holdfast.sh/assets/og/vanth.png", "width": 1200, "height": 630},
+      "articleSection": "Guides",
+      "inLanguage": "en",
+      "isPartOf": {"@type": "CollectionPage", "@id": "https://holdfast.sh/guides/"}
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://holdfast.sh/guides/background-jobs/#breadcrumb",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://holdfast.sh/"},
+        {"@type": "ListItem", "position": 2, "name": "Guides", "item": "https://holdfast.sh/guides/"},
+        {"@type": "ListItem", "position": 3, "name": "Long jobs with vanth", "item": "https://holdfast.sh/guides/background-jobs/"}
+      ]
+    }
+  ]
+}
+</script>
+<link rel="icon" href="/assets/mark.svg" type="image/svg+xml"><link rel="icon" href="/assets/icons/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest">
+<link rel="preload" href="/assets/fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/styles.css"><link rel="stylesheet" href="/assets/studio.css"><link rel="stylesheet" href="/assets/sculpture.css?v=2">
+<script defer src="/assets/site.js"></script>
+<script>document.documentElement.dataset.theme=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"</script>
+<script defer src="/assets/studio.js?v=3"></script></head>
+<body class="studio-guide"><a class="skip-link" href="#main">Skip to content</a>
+<header class="studio-header">
+<a class="studio-brand" href="/" aria-label="Holdfast Labs home"><img src="/assets/mark.svg?v=roots" alt="" width="32" height="32"><span>Holdfast Labs</span></a>
+<nav class="studio-nav" aria-label="Main navigation">
+<details class="studio-menu"><summary>Products <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m4 6 4 4 4-4" stroke="currentColor" stroke-width="1.5"/></svg></summary>
+<div class="studio-menu-panel">
+<a href="/seekfs/" data-root-product="seekfs"><strong>seekfs</strong><p>Instant file search. For you and your agents.</p></a>
+<a href="/vanth/" data-root-product="vanth"><strong>vanth</strong><p>Background jobs that wake your agent.</p></a>
+<a href="/wgrep/" data-root-product="wgrep"><strong>wgrep</strong><p>Code search. Semantic or exact.</p></a>
+
+</div></details>
+<a href="/guides/">Guides</a>
+<a class="nav-secondary" href="https://github.com/holdfast-labs">GitHub <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 12 12 4M4 4h8v8" stroke="currentColor" stroke-width="1.3"/></svg></a>
+</nav></header>
+<main id="main">
+<section class="hero hero-sub" aria-labelledby="guide-title">
+  <div class="studio-shell hero-inner">
+    <p class="hero-note" style="margin-top:0;margin-bottom:18px">Guide · vanth 1.14.0</p>
+    <h1 id="guide-title" style="width:100%">Run long jobs<br><span class="soft">and wake your agent</span></h1>
+    <p class="hero-dek" style="width:100%">Start a detached command, inspect its output, and wake an OpenCode or Codex session when the job finishes or reaches a checkpoint. The first job is short. The wake example uses a loop with checkpoints.</p>
+  </div>
+</section>
+
+<section class="product-section tint" aria-labelledby="before-title"><div class="studio-shell">
+<div class="section-intro"><h2 id="before-title">Before you start</h2><p>The short example needs only Python and uv. The wake example also needs a live OpenCode or Codex session.</p></div>
+<ul class="agent-points"><li>Python 3.11 or later, and <code>uv</code>.</li><li>OpenCode or Codex CLI for the wake steps. The job and inspection steps work without an agent.</li><li>A project folder with a command that can run unattended.</li><li>Network access for the first install.</li></ul>
+</div></section>
+
+<section class="product-section" aria-labelledby="install-title"><div class="studio-shell agent-layout">
+<div class="agent-copy"><h2 id="install-title">1. Install and connect</h2><p>Install with <code>uv</code>. The wheel includes the CLI, the MCP server, the daemon, and <code>vanth-monitor</code>.</p><p><code>vanth setup</code> detects OpenCode, Codex, and Claude-style MCP clients. For Codex, run <code>vanth setup codex</code>. Restart the client after setup so it loads the new server.</p><p><code>vanth status</code> is read-only. It reports the daemon as down without starting it. A normal MCP call or an operational command such as <code>vanth list</code> starts the daemon on demand.</p></div>
+<div><span class="code-note">Install and check health</span><pre class="studio-code"><code class="code-command">uv tool install vanth
+vanth setup opencode
+vanth status
+vanth doctor</code></pre>
+<div class="agent-output"><span class="code-note">OpenCode connection check</span><pre class="studio-code"><code class="code-command">opencode mcp list</code></pre></div></div>
+</div></section>
+
+<section class="product-section tint" aria-labelledby="start-title"><div class="studio-shell agent-layout">
+<div class="agent-copy"><h2 id="start-title">2. Run one complete job</h2><p>This command starts a detached job and returns a job ID. The command uses <code>uv run</code>, so it runs in the project environment.</p><p><code>--timeout</code> sets a runtime limit in seconds. The runner enforces it across daemon restarts. A hung command ends as <code>timeout</code>, not as a job that runs forever.</p><p>Pass a command with shell operators as one quoted string. A bare <code>&amp;&amp;</code>, <code>|</code>, or <code>&gt;</code> argument is refused.</p></div>
+<div><span class="code-note">Start the job</span><pre class="studio-code"><code class="code-command">vanth start --name demo --timeout 60 -- uv run python -c "print('hello from a vanth job')"</code></pre>
+<div class="agent-output"><span class="code-note">Example output · job ID changes</span><pre class="studio-code"><code>started job_543a9ad15be2 (running)
+  watch: vanth logs job_543a9ad15be2</code></pre></div></div>
+</div></section>
+
+<section class="product-section" aria-labelledby="inspect-title"><div class="studio-shell agent-layout">
+<div class="agent-copy"><h2 id="inspect-title">3. Wait and inspect the result</h2><p><code>vanth wait</code> blocks until a terminal event by default and exits 0 on an event, 3 on timeout. It defaults to completed, failed, timeout, cancelled, and orphaned.</p><p><code>vanth logs</code> reads captured output without attaching to the runner. <code>vanth status</code> shows the command, exit code, runtime, and last event.</p></div>
+<div><span class="code-note">Read the result</span><pre class="studio-code"><code class="code-command">vanth wait job_543a9ad15be2
+vanth logs job_543a9ad15be2
+vanth status job_543a9ad15be2</code></pre>
+<div class="agent-output"><span class="code-note">Example output · completed job</span><pre class="studio-code"><code>vanth wait: completed (job job_543a9ad15be2, seq 2): Job completed
+hello from a vanth job
+
+job:       job_543a9ad15be2
+  name:    demo
+  status:  completed (exit 0)
+  runtime: 0s
+  command: uv run python -c "print('hello from a vanth job')"
+  cwd:     C:\work\demo
+  last:    completed seq 2</code></pre></div></div>
+</div></section>
+
+<section class="product-section tint" aria-labelledby="wake-title"><div class="studio-shell agent-layout">
+<div class="agent-copy"><h2 id="wake-title">4. Wake an agent when the job needs attention</h2><p>Add <code>--wake-me</code> to register a wake target for the current agent session. It defaults to the terminal outcomes: <code>completed</code>, <code>failed</code>, <code>timeout</code>, <code>cancelled</code>, and <code>orphaned</code>.</p><p>Add <code>checkpoint</code> when you want a wake before the job ends. A checkpoint wake only fires if the job emits <code>checkpoint</code> events.</p><p>For OpenCode, run <code>vanth setup opencode</code> and restart OpenCode. A plain TUI uses the plugin relay. Without a live relay, an <code>opencode_thread</code> target is rejected at creation. Run <code>vanth doctor</code> to inspect the relay.</p><p>Create <code>job.py</code> with the loop below, then start it. When the job reaches a checkpoint or finishes, vanth resumes the registered OpenCode or Codex session.</p></div>
+<div><span class="code-note">job.py</span><pre class="studio-code"><code>import time
+
+from vanth.agent_events import agent_event, progress
+
+for epoch in range(1, 4):
+    progress(epoch, 3, unit="epoch", stage="train", message=f"{epoch}/3 epochs")
+    agent_event("checkpoint", f"epoch {epoch} done", epoch=epoch, val_loss=0.4 / epoch)
+    time.sleep(2)
+
+print("training complete")</code></pre>
+<div class="agent-output"><span class="code-note">Start the job</span><pre class="studio-code"><code class="code-command">vanth start --wake-me=completed,failed,checkpoint --timeout 3600 -- uv run --with vanth python job.py</code></pre></div>
+<div class="agent-output"><span class="code-note">Example output · job ID changes</span><pre class="studio-code"><code>started job_543a9ad15be2 (running)
+  watch: vanth logs job_543a9ad15be2</code></pre></div></div>
+</div></section>
+
+<section class="product-section" aria-labelledby="events-title"><div class="studio-shell agent-layout">
+<div class="agent-copy"><h2 id="events-title">5. Emit progress, metrics, and checkpoints</h2><p>The wire format is one line on stdout or stderr. <code>vanth emit</code> prints one line and works from any language.</p><p>Numeric metric fields become line plots. <code>_step</code> is the x-axis when present. Other fields stay with the event.</p></div>
+<div><span class="code-note">Event lines</span><pre class="studio-code"><code class="code-command">vanth emit checkpoint "epoch done" --data epoch=10 --data val_loss=0.42
+vanth emit progress --data current=10 --data total=100 --data unit=epoch --data stage=train
+vanth emit metric --data _step=10 --data loss=0.42 --data acc=0.88</code></pre>
+<div class="agent-output"><span class="code-note">Actual output · first two commands</span><pre class="studio-code"><code>AGENT_EVENT {"type":"checkpoint","data":{"epoch":10,"val_loss":0.42},"message":"epoch done"}
+AGENT_EVENT {"type":"progress","data":{"current":10,"total":100,"unit":"epoch","stage":"train","percent":10.0}}</code></pre></div></div>
+</div></section>
+
+<section class="product-section tint" aria-labelledby="monitor-title"><div class="studio-shell agent-layout">
+<div class="agent-copy"><h2 id="monitor-title">6. Watch the work</h2><p><code>vanth-monitor</code> shows live jobs, progress, metrics, and plots. The log command filters captured output without attaching to the runner.</p><p><code>vanth list --json</code> gives scripts the same job state.</p></div>
+<div><span class="code-note">Status and output</span><pre class="studio-code"><code class="code-command">vanth list --status running --json
+vanth status job_abc123
+vanth logs job_abc123 --stream stderr --max-bytes 65536
+vanth wait job_abc123
+vanth-monitor</code></pre></div>
+</div></section>
+
+<section class="product-section" aria-labelledby="mcp-title"><div class="studio-shell agent-layout">
+<div class="agent-copy"><h2 id="mcp-title">7. Use MCP from an agent</h2><p>MCP clients get the same operations as tools. For long work, start with a wake target and let the session go idle.</p><p>Use <code>job_wait</code> instead of polling <code>job_status</code>. Pass <code>since_event_id</code> after you handle an event so the next wait does not return the same one.</p></div>
+<div><span class="code-note">MCP calls</span><pre class="studio-code"><code class="code-command">job_start(
+    command="uv run python train.py",
+    name="train resnet",
+    wake_me=True,
+)
+job_wait(job_id="job_abc123", filters=["checkpoint"], timeout_seconds=120)
+job_wait(
+    job_id="job_abc123",
+    filters=["completed", "failed", "timeout", "cancelled", "orphaned"],
+    timeout_seconds=300,
+)
+job_run_summary(job_id="job_abc123")
+job_tail(job_id="job_abc123", stream="stderr", max_bytes=8192)</code></pre></div>
+</div></section>
+
+<section class="product-section tint" aria-labelledby="limits-title"><div class="studio-shell">
+<div class="section-intro"><h2 id="limits-title">Know the wake limits</h2></div>
+<ul class="agent-points"><li>Delivery is at-least-once. Each payload carries a <code>delivery_id</code> for deduplication.</li><li>An OpenCode TUI is woken by the plugin relay. Run <code>vanth setup opencode</code> and restart OpenCode. Without a live relay, the target is rejected at creation.</li><li>The default OpenCode turn timeout is 30 seconds. Raise it for long turns.</li><li>A Codex thread must already have a turn. Waking a new, zero-turn thread fails with <code>no rollout found for thread id</code>.</li><li>Codex Desktop wake is experimental. It covers one provisioned task per Desktop lifetime and needs a running Desktop session.</li><li>Jobs survive a daemon restart. The runner is detached. The daemon marks a job <code>orphaned</code> if the runner dies.</li></ul>
+</div></section>
+
+<section class="product-section" aria-labelledby="sources-title"><div class="studio-shell">
+<div class="section-intro"><h2 id="sources-title">Sources and related</h2><p>Commands checked against vanth 1.14.0 on Windows: <code>vanth emit</code> printed the event lines shown; <code>vanth start</code>, <code>vanth wait</code>, <code>vanth logs</code>, and <code>vanth status</code> ran one short job. The full wake loop needs a live OpenCode or Codex session and was not tested for this guide.</p></div>
+<div class="resource-links"><a href="/vanth/">vanth product page</a><a href="https://github.com/holdfast-labs/vanth#readme">CLI and install reference</a><a href="https://github.com/holdfast-labs/vanth/blob/master/docs/agent-tools.md">MCP tool reference</a><a href="/use-cases/">Use cases</a><a href="/guides/local-code-search/">Search a local codebase with wgrep</a><a href="/guides/windows-file-search/">Find files on Windows with seekfs</a></div>
+</div></section>
+</main>
+<footer class="studio-footer"><div class="studio-footer-inner"><span>© <span data-year>2026</span> Holdfast Labs</span><nav aria-label="Footer"><a href="/guides/">Guides</a><a href="/changelog/">Changelog</a><a href="/about/">About</a><a href="https://github.com/holdfast-labs">GitHub</a></nav></div></footer>
+</body></html>

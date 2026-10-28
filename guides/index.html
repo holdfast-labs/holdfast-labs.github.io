@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head><meta name="darkreader-lock">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guides — Holdfast Labs</title>
+<meta name="description" content="Practical guides for wgrep code search, seekfs Windows file search, and vanth background jobs. Prerequisites, runnable commands, example output, and limits.">
+<meta name="theme-color" content="#f5f5f2" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#111111" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://holdfast.sh/guides/">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Holdfast Labs">
+<meta property="og:title" content="Guides — Holdfast Labs"><meta property="og:description" content="Practical guides for wgrep code search, seekfs Windows file search, and vanth background jobs. Prerequisites, runnable commands, example output, and limits.">
+<meta property="og:url" content="https://holdfast.sh/guides/"><meta property="og:image" content="https://holdfast.sh/assets/og/home.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://holdfast.sh/assets/og/home.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://holdfast.sh/#website",
+      "url": "https://holdfast.sh/",
+      "name": "Holdfast Labs"
+    },
+    {
+      "@type": "CollectionPage",
+      "@id": "https://holdfast.sh/guides/#webpage",
+      "url": "https://holdfast.sh/guides/",
+      "name": "Guides — Holdfast Labs",
+      "description": "Practical guides for wgrep code search, seekfs Windows file search, and vanth background jobs. Prerequisites, runnable commands, example output, and limits.",
+      "isPartOf": {"@id": "https://holdfast.sh/#website"},
+      "inLanguage": "en"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://holdfast.sh/guides/#breadcrumb",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://holdfast.sh/"},
+        {"@type": "ListItem", "position": 2, "name": "Guides", "item": "https://holdfast.sh/guides/"}
+      ]
+    },
+    {
+      "@type": "ItemList",
+      "@id": "https://holdfast.sh/guides/#guides",
+      "name": "Holdfast Labs guides",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Search a local codebase with wgrep", "url": "https://holdfast.sh/guides/local-code-search/"},
+        {"@type": "ListItem", "position": 2, "name": "Find files on Windows with seekfs", "url": "https://holdfast.sh/guides/windows-file-search/"},
+        {"@type": "ListItem", "position": 3, "name": "Run long jobs and wake your agent with vanth", "url": "https://holdfast.sh/guides/background-jobs/"}
+      ]
+    }
+  ]
+}
+</script>
+<link rel="icon" href="/assets/mark.svg" type="image/svg+xml"><link rel="icon" href="/assets/icons/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest">
+<link rel="preload" href="/assets/fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/styles.css"><link rel="stylesheet" href="/assets/studio.css"><link rel="stylesheet" href="/assets/sculpture.css?v=2">
+<script defer src="/assets/site.js"></script>
+<script>document.documentElement.dataset.theme=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"</script>
+<script defer src="/assets/studio.js?v=3"></script></head>
+<body class="studio-guide"><a class="skip-link" href="#main">Skip to content</a>
+<header class="studio-header">
+<a class="studio-brand" href="/" aria-label="Holdfast Labs home"><img src="/assets/mark.svg?v=roots" alt="" width="32" height="32"><span>Holdfast Labs</span></a>
+<nav class="studio-nav" aria-label="Main navigation">
+<details class="studio-menu"><summary>Products <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m4 6 4 4 4-4" stroke="currentColor" stroke-width="1.5"/></svg></summary>
+<div class="studio-menu-panel">
+<a href="/seekfs/" data-root-product="seekfs"><strong>seekfs</strong><p>Instant file search. For you and your agents.</p></a>
+<a href="/vanth/" data-root-product="vanth"><strong>vanth</strong><p>Background jobs that wake your agent.</p></a>
+<a href="/wgrep/" data-root-product="wgrep"><strong>wgrep</strong><p>Code search. Semantic or exact.</p></a>
+
+</div></details>
+<a href="/guides/">Guides</a>
+<a class="nav-secondary" href="https://github.com/holdfast-labs">GitHub <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 12 12 4M4 4h8v8" stroke="currentColor" stroke-width="1.3"/></svg></a>
+</nav></header>
+<main id="main">
+<section class="hero hero-sub" aria-labelledby="guides-title">
+  <div class="studio-shell hero-inner">
+    <p class="hero-note" style="margin-top:0;margin-bottom:18px">Guides</p>
+    <h1 id="guides-title" style="width:100%">Start with a task.<br><span class="soft">Run one complete example.</span></h1>
+    <p class="hero-dek" style="width:100%">Each guide lists prerequisites, ordered steps, runnable commands, example output, and the limits that matter. No account and no cloud service.</p>
+  </div>
+</section>
+
+<section class="product-section tint" aria-labelledby="choose-title"><div class="studio-shell">
+<div class="section-intro"><h2 id="choose-title">Choose a guide</h2><p>Install one tool, run the example, then adapt the commands to your project.</p></div>
+<div class="cards guide-cards">
+<a class="card" href="/guides/local-code-search/"><div class="card-body"><p class="eyebrow">Code search</p><h3>Search a local codebase by meaning and exact text</h3><p>Attach a repository with wgrep, search by intent, scope the search to a folder, and switch to exact ripgrep text.</p><span class="link-arrow">Read the wgrep guide <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10m-4-4 4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div></a>
+<a class="card" href="/guides/windows-file-search/"><div class="card-body"><p class="eyebrow">File search</p><h3>Find files on Windows from the command line</h3><p>Index a folder or an NTFS volume with seekfs, then query names, paths, extensions, sizes, and dates.</p><span class="link-arrow">Read the seekfs guide <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10m-4-4 4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div></a>
+<a class="card" href="/guides/background-jobs/"><div class="card-body"><p class="eyebrow">Background jobs</p><h3>Run long jobs and wake your agent</h3><p>Start a detached command with vanth, read the result, and wake an OpenCode or Codex session on completion or a checkpoint.</p><span class="link-arrow">Read the vanth guide <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10m-4-4 4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div></a>
+</div>
+</div></section>
+
+<section class="product-section" aria-labelledby="products-title"><div class="studio-shell">
+<div class="section-intro"><h2 id="products-title">Product pages</h2><p>Recordings, benchmarks, downloads, and source links.</p></div>
+<div class="resource-links"><a href="/wgrep/">wgrep</a><a href="/seekfs/">seekfs</a><a href="/vanth/">vanth</a><a href="/use-cases/">Use cases</a><a href="/changelog/">Changelog</a></div>
+</div></section>
+</main>
+<footer class="studio-footer"><div class="studio-footer-inner"><span>© <span data-year>2026</span> Holdfast Labs</span><nav aria-label="Footer"><a href="/guides/">Guides</a><a href="/changelog/">Changelog</a><a href="/about/">About</a><a href="https://github.com/holdfast-labs">GitHub</a></nav></div></footer>
+</body></html>

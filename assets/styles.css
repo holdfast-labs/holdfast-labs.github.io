@@ -115,6 +115,7 @@ h1,h2,h3,h4{margin:0;font-weight:500;letter-spacing:-.035em;text-wrap:balance}
 .menu-product .glyph{flex:none;width:38px;height:38px;border-radius:11px;display:grid;place-items:center;font-family:var(--mono);font-size:13px;font-weight:600;color:#fff}
 .glyph-seek{background:linear-gradient(140deg,#4f7fae,#3f7a55)}
 .glyph-vanth{background:linear-gradient(140deg,#d4893a,#c2603a)}
+.glyph-wgrep{background:linear-gradient(140deg,#5f9a6c,#4f7fae)}
 .menu-product b{display:block;font-size:15px;font-weight:550;letter-spacing:-.01em}
 .menu-product span{display:block;margin-top:2px;font-size:13px;color:var(--muted);line-height:1.4}
 .menu-product .platforms{display:flex;margin-top:8px}
@@ -297,6 +298,7 @@ h1,h2,h3,h4{margin:0;font-weight:500;letter-spacing:-.035em;text-wrap:balance}
 /* ---------- Cards ---------- */
 .cards{display:grid;gap:16px;margin-top:52px}
 @media (min-width:860px){.cards{grid-template-columns:1fr 1fr}}
+@media (min-width:1000px){.guide-cards{grid-template-columns:repeat(3,1fr)}}
 .card{display:flex;flex-direction:column;overflow:hidden;border-radius:var(--r);background:var(--card);box-shadow:inset 0 0 0 1px var(--line),var(--shadow-sm)}
 .card-art{position:relative;display:grid;place-items:center;height:300px;padding:32px;overflow:hidden;background:radial-gradient(120% 90% at 50% 0%,var(--card-2),var(--well))}
 .card-art .win{width:100%;max-width:440px;box-shadow:0 0 0 1px var(--line-2),var(--shadow);transition:transform .6s cubic-bezier(.2,.8,.2,1)}
@@ -471,7 +473,7 @@ h1,h2,h3,h4{margin:0;font-weight:500;letter-spacing:-.035em;text-wrap:balance}
 .entry-meta{display:flex;flex-direction:column;gap:8px;align-items:flex-start;font-size:13px;color:var(--muted)}
 .tag{display:inline-flex;align-items:center;gap:6px;height:26px;padding:0 10px;border-radius:999px;font-size:12px;font-weight:550;color:var(--fg);box-shadow:inset 0 0 0 1px var(--line-2);background:var(--card-2)}
 .tag i{width:7px;height:7px;border-radius:50%}
-.tag.seek i{background:var(--sky)}.tag.vanth i{background:var(--amber)}
+.tag.seek i{background:var(--sky)}.tag.vanth i{background:var(--amber)}.tag.wgrep i{background:var(--moss)}
 .entry h3{font-size:22px;letter-spacing:-.025em}
 .entry p{margin-top:8px;font-size:14.5px;line-height:1.65;color:var(--muted)}
 .entry ul{margin:12px 0 0;padding-left:18px;font-size:14.5px;line-height:1.65;color:var(--fg-2)}

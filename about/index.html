@@ -3,11 +3,11 @@
 <head><meta name="darkreader-lock">
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>About — Holdfast Labs</title>
-<meta name="description" content="Holdfast Labs builds small, local developer tools that people and agents can depend on.">
+<meta name="description" content="Holdfast Labs builds local, open-source tools: seekfs for Windows file search, vanth for agent background jobs, and wgrep for code search.">
 <meta name="theme-color" content="#f5f5f2" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#111111" media="(prefers-color-scheme: dark)">
 <link rel="canonical" href="https://holdfast.sh/about/">
 <meta property="og:type" content="website"><meta property="og:site_name" content="Holdfast Labs">
-<meta property="og:title" content="About — Holdfast Labs"><meta property="og:description" content="Holdfast Labs builds small, local developer tools that people and agents can depend on.">
+<meta property="og:title" content="About — Holdfast Labs"><meta property="og:description" content="Holdfast Labs builds local, open-source tools: seekfs for Windows file search, vanth for agent background jobs, and wgrep for code search.">
 <meta property="og:url" content="https://holdfast.sh/about/"><meta property="og:image" content="https://holdfast.sh/assets/og/home.png">
 <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://holdfast.sh/assets/og/home.png">
@@ -27,8 +27,10 @@
 <div class="studio-menu-panel">
 <a href="/seekfs/" data-root-product="seekfs"><strong>seekfs</strong><p>Instant file search. For you and your agents.</p></a>
 <a href="/vanth/" data-root-product="vanth"><strong>vanth</strong><p>Background jobs that wake your agent.</p></a>
+<a href="/wgrep/" data-root-product="wgrep"><strong>wgrep</strong><p>Code search. Semantic or exact.</p></a>
 
 </div></details>
+<a href="/guides/">Guides</a>
 <a class="nav-secondary" href="https://github.com/holdfast-labs">GitHub <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 12 12 4M4 4h8v8" stroke="currentColor" stroke-width="1.3"/></svg></a>
 </nav></header>
 <main id="main">
@@ -52,10 +54,10 @@
     <h2 id="a-principles" class="h2 h2-sm reveal">How we build</h2>
     <div class="principles">
       <div class="principle reveal"><span class="n">01</span><h3>Local first</h3><p>Indexes and job records are stored locally. No accounts, no sign-in, and a daemon that only listens on localhost.</p></div>
-      <div class="principle reveal"><span class="n">02</span><h3>Measured, then claimed</h3><p>Every speed number on this site comes from a benchmark you can rerun, with the method and raw data published next to it.</p></div>
+      <div class="principle reveal"><span class="n">02</span><h3>Measured, then claimed</h3><p>Speed claims come from recorded runs. <a href="/assets/seekfs-vs-everything.json">seekfs benchmark data</a> and <a href="https://github.com/holdfast-labs/wgrep/blob/main/docs/benchmarks.md">wgrep method and limits</a> are public. Raw receipts stay with each project.</p></div>
       <div class="principle reveal"><span class="n">03</span><h3>Agents are users too</h3><p>JSON output, MCP tools and documented guidance for agents ship in the first release of a feature, not as an afterthought.</p></div>
       <div class="principle reveal"><span class="n">04</span><h3>Durable by default</h3><p>Crashes and restarts are normal. Indexes recover from their write-ahead log; job records, captured output and pending wakes persist in SQLite.</p></div>
-      <div class="principle reveal"><span class="n">05</span><h3>Small surface, deep roots</h3><p>Each tool does one job. seekfs does not search contents; vanth is not a cluster scheduler. Saying no keeps them fast and dependable.</p></div>
+      <div class="principle reveal"><span class="n">05</span><h3>Small surface, deep roots</h3><p>Each tool does one job. seekfs finds names and paths; wgrep searches code; vanth is not a cluster scheduler. Saying no keeps them fast and dependable.</p></div>
       <div class="principle reveal"><span class="n">06</span><h3>In the open</h3><p>MIT and Apache-2.0 source, release notes for every version, and bugs written up honestly, with the numbers that found them.</p></div>
     </div>
   </div>
@@ -67,6 +69,7 @@
     <div class="cards">
       <a class="card reveal" href="/seekfs/"><div class="card-art" style="height:220px"><span class="glyph glyph-seek" style="width:84px;height:84px;border-radius:24px;display:grid;place-items:center;color:#fff;font:600 30px var(--mono)">sf</span></div><div class="card-body"><p class="eyebrow">Windows file search</p><h3>seekfs finds any file before you finish typing.</h3><span class="link-arrow">Explore seekfs <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10m-4-4 4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div></a>
       <a class="card reveal" href="/vanth/"><div class="card-art" style="height:220px"><span class="glyph glyph-vanth" style="width:84px;height:84px;border-radius:24px;display:grid;place-items:center;color:#fff;font:600 30px var(--mono)">v</span></div><div class="card-body"><p class="eyebrow">Background jobs for agents</p><h3>vanth runs the slow part and wakes your agent with the result.</h3><span class="link-arrow">Explore vanth <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10m-4-4 4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div></a>
+      <a class="card reveal" href="/wgrep/"><div class="card-art" style="height:220px"><span class="glyph glyph-wgrep" style="width:84px;height:84px;border-radius:24px;display:grid;place-items:center;color:#fff;font:600 30px var(--mono)">wg</span></div><div class="card-body"><p class="eyebrow">Code search</p><h3>wgrep ranks code by meaning and matches exact text.</h3><span class="link-arrow">Explore wgrep <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10m-4-4 4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div></a>
     </div>
   </div>
 </section>
@@ -75,11 +78,11 @@
   <div class="wave" data-wave="cta" aria-hidden="true"></div>
   <div class="shell">
     <h2 id="s-cta" class="h2 reveal">Find us on GitHub.</h2>
-    <p class="lede reveal">Report issues on <a href="https://github.com/holdfast-labs/seekfs/issues">seekfs</a> or <a href="https://github.com/holdfast-labs/vanth/issues">vanth</a>. Ideas and pull requests land in front of the people who wrote the code.</p>
+    <p class="lede reveal">Report issues on <a href="https://github.com/holdfast-labs/seekfs/issues">seekfs</a>, <a href="https://github.com/holdfast-labs/vanth/issues">vanth</a>, or <a href="https://github.com/holdfast-labs/wgrep/issues">wgrep</a>. Ideas and pull requests land in front of the people who wrote the code.</p>
     <div class="hero-actions reveal"><a class="btn btn-ink btn-lg" href="https://github.com/holdfast-labs">github.com/holdfast-labs <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M5 11 11 5m-5 0h5v5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
   </div>
 </section>
 </main>
-<footer class="studio-footer"><div class="studio-footer-inner"><span>© <span data-year>2026</span> Holdfast Labs</span><nav aria-label="Footer"><a href="/changelog/">Changelog</a><a href="/about/">About</a><a href="https://github.com/holdfast-labs">GitHub</a></nav></div></footer>
+<footer class="studio-footer"><div class="studio-footer-inner"><span>© <span data-year>2026</span> Holdfast Labs</span><nav aria-label="Footer"><a href="/guides/">Guides</a><a href="/changelog/">Changelog</a><a href="/about/">About</a><a href="https://github.com/holdfast-labs">GitHub</a></nav></div></footer>
 </body>
 </html>

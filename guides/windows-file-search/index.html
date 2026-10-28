@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head><meta name="darkreader-lock">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Windows file search from the command line with seekfs</title>
+<meta name="description" content="Index a folder or NTFS volume, then find files by name, path, extension, size, or date. Complete seekfs example with JSON output and limits.">
+<meta name="theme-color" content="#f5f5f2" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#111111" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://holdfast.sh/guides/windows-file-search/">
+<meta property="og:type" content="article"><meta property="og:site_name" content="Holdfast Labs">
+<meta property="og:title" content="Windows file search from the command line with seekfs"><meta property="og:description" content="Index a folder or NTFS volume, then find files by name, path, extension, size, or date. Complete seekfs example with JSON output and limits.">
+<meta property="og:url" content="https://holdfast.sh/guides/windows-file-search/"><meta property="og:image" content="https://holdfast.sh/assets/og/seekfs.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://holdfast.sh/assets/og/seekfs.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://holdfast.sh/guides/windows-file-search/#article",
+      "headline": "Windows file search from the command line with seekfs",
+      "description": "Index a folder or NTFS volume, then find files by name, path, extension, size, or date. Complete seekfs example with JSON output and limits.",
+      "url": "https://holdfast.sh/guides/windows-file-search/",
+      "mainEntityOfPage": {"@type": "WebPage", "@id": "https://holdfast.sh/guides/windows-file-search/"},
+      "author": {"@type": "Organization", "name": "Holdfast Labs", "url": "https://holdfast.sh/"},
+      "publisher": {
+        "@type": "Organization",
+        "name": "Holdfast Labs",
+        "url": "https://holdfast.sh/",
+        "logo": {"@type": "ImageObject", "url": "https://holdfast.sh/assets/icons/icon-512.png", "width": 512, "height": 512}
+      },
+      "image": {"@type": "ImageObject", "url": "https://holdfast.sh/assets/og/seekfs.png", "width": 1200, "height": 630},
+      "articleSection": "Guides",
+      "inLanguage": "en",
+      "isPartOf": {"@type": "CollectionPage", "@id": "https://holdfast.sh/guides/"}
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://holdfast.sh/guides/windows-file-search/#breadcrumb",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://holdfast.sh/"},
+        {"@type": "ListItem", "position": 2, "name": "Guides", "item": "https://holdfast.sh/guides/"},
+        {"@type": "ListItem", "position": 3, "name": "Windows file search with seekfs", "item": "https://holdfast.sh/guides/windows-file-search/"}
+      ]
+    }
+  ]
+}
+</script>
+<link rel="icon" href="/assets/mark.svg" type="image/svg+xml"><link rel="icon" href="/assets/icons/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest">
+<link rel="preload" href="/assets/fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/styles.css"><link rel="stylesheet" href="/assets/studio.css"><link rel="stylesheet" href="/assets/sculpture.css?v=2">
+<script defer src="/assets/site.js"></script>
+<script>document.documentElement.dataset.theme=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"</script>
+<script defer src="/assets/studio.js?v=3"></script></head>
+<body class="studio-guide"><a class="skip-link" href="#main">Skip to content</a>
+<header class="studio-header">
+<a class="studio-brand" href="/" aria-label="Holdfast Labs home"><img src="/assets/mark.svg?v=roots" alt="" width="32" height="32"><span>Holdfast Labs</span></a>
+<nav class="studio-nav" aria-label="Main navigation">
+<details class="studio-menu"><summary>Products <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m4 6 4 4 4-4" stroke="currentColor" stroke-width="1.5"/></svg></summary>
+<div class="studio-menu-panel">
+<a href="/seekfs/" data-root-product="seekfs"><strong>seekfs</strong><p>Instant file search. For you and your agents.</p></a>
+<a href="/vanth/" data-root-product="vanth"><strong>vanth</strong><p>Background jobs that wake your agent.</p></a>
+<a href="/wgrep/" data-root-product="wgrep"><strong>wgrep</strong><p>Code search. Semantic or exact.</p></a>
+
+</div></details>
+<a href="/guides/">Guides</a>
+<a class="nav-secondary" href="https://github.com/holdfast-labs">GitHub <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 12 12 4M4 4h8v8" stroke="currentColor" stroke-width="1.3"/></svg></a>
+</nav></header>
+<main id="main">
+<section class="hero hero-sub" aria-labelledby="guide-title">
+  <div class="studio-shell hero-inner">
+    <p class="hero-note" style="margin-top:0;margin-bottom:18px">Guide · seekfs 1.12.1</p>
+    <h1 id="guide-title" style="width:100%">Find files on Windows<br><span class="soft">from the command line</span></h1>
+    <p class="hero-dek" style="width:100%">Index a folder or an NTFS volume, then query names and paths without walking the drive. The example creates a small folder index so you can run every step.</p>
+  </div>
+</section>
+
+<section class="product-section tint" aria-labelledby="before-title"><div class="studio-shell">
+<div class="section-intro"><h2 id="before-title">Before you start</h2><p>The folder example takes about two minutes. A whole-volume index can take longer.</p></div>
+<ul class="agent-points"><li>Windows 10 or 11. NTFS is the primary target for volume indexes.</li><li>The seekfs 1.12.1 ZIP from the <a href="https://github.com/holdfast-labs/seekfs/releases/latest">latest release</a>.</li><li>Administrator PowerShell for a volume index or service management. The folder index below does not need administrator access.</li><li>No Everything install. The comparison on the product page is a separate benchmark.</li></ul>
+</div></section>
+
+<section class="product-section" aria-labelledby="download-title"><div class="studio-shell agent-layout">
+<div class="agent-copy"><h2 id="download-title">1. Download and extract</h2><p>Use the Windows ZIP from the latest release. The archive contains <code>seekfs.exe</code>, <code>seekfs-native.exe</code>, and <code>seekfs-ui.exe</code>.</p><p>The binaries are unsigned. Windows may show a security prompt.</p></div>
+<div><span class="code-note">Windows x64 · PowerShell</span><pre class="studio-code"><code class="code-command">Invoke-WebRequest https://github.com/holdfast-labs/seekfs/releases/download/v1.12.1/seekfs-windows-amd64.zip -OutFile seekfs-windows-amd64.zip
+Expand-Archive seekfs-windows-amd64.zip -DestinationPath seekfs
+Set-Location seekfs</code></pre></div>
+</div></section>
+
+<section class="product-section tint" aria-labelledby="fixture-title"><div class="studio-shell agent-layout">
+<div class="agent-copy"><h2 id="fixture-title">2. Create a small folder</h2><p>The example uses a folder index so you can test the query language without indexing a whole drive. It creates two folders and three files.</p><p>Use your own folder after the first run.</p></div>
+<div><span class="code-note">Create the fixture</span><pre class="studio-code"><code class="code-command">$demo = "$env:USERPROFILE\seekfs-demo"
+New-Item -ItemType Directory -Force "$demo\reports","$demo\src" | Out-Null
+Set-Content "$demo\reports\quarterly-report.txt" "Q3"
+Set-Content "$demo\reports\draft-report.txt" "Draft"
+Set-Content "$demo\src\main.go" "package main"</code></pre></div>
+</div></section>
+
+<section class="product-section" aria-labelledby="index-title"><div class="studio-shell agent-layout">
+<div class="agent-copy"><h2 id="index-title">3. Build the folder index</h2><p><code>index</code> writes a database file. Later commands read it with <code>-db</code>.</p><p>The resident service is the faster option for daily use. This folder index is the smallest complete example.</p></div>
+<div><span class="code-note">Build the index</span><pre class="studio-code"><code class="code-command">.\seekfs.exe index -root $demo -db .\demo.gsi</code></pre>
+<div class="agent-output"><span class="code-note">Example output · small folder tree</span><pre class="studio-code"><code>indexed 6 entries in 6ms</code></pre></div></div>
+</div></section>
+
+<section class="product-section tint" aria-labelledby="search-title"><div class="studio-shell agent-layout">
+<div class="agent-copy"><h2 id="search-title">4. Search names and paths</h2><p>Filename search is the default. Put flags before the query and quote multi-term queries.</p><p>The result includes directories and files. Add a filename term or <code>-path</code> when you need narrower results.</p></div>
+<div><span class="code-note">Search the folder index</span><pre class="studio-code"><code class="code-command">.\seekfs.exe search -db .\demo.gsi report</code></pre>
+<div class="agent-output"><span class="code-note">Example output · directory and files</span><pre class="studio-code"><code>C:\Users\you\seekfs-demo\reports
+C:\Users\you\seekfs-demo\reports\draft-report.txt
+C:\Users\you\seekfs-demo\reports\quarterly-report.txt</code></pre></div></div>
+</div></section>
+
+<section class="product-section" aria-labelledby="json-title"><div class="studio-shell agent-layout">
+<div class="agent-copy"><h2 id="json-title">5. Ask for JSON and a count</h2><p><code>--json</code> returns the query, count, limit, completeness flag, and results. Use <code>-n</code> to bound the row count.</p><p><code>!draft</code> excludes the draft file. The count command returns a number only.</p></div>
+<div><span class="code-note">JSON and count</span><pre class="studio-code"><code class="code-command">.\seekfs.exe search -db .\demo.gsi --json -n 2 "report !draft"
+.\seekfs.exe count -db .\demo.gsi "ext:go"</code></pre>
+<div class="agent-output"><span class="code-note">Example output · selected fields</span><pre class="studio-code"><code>{
+  "ok": true,
+  "query": "report !draft",
+  "count": 2,
+  "limit": 2,
+  "complete": true,
+  "results": [
+    {
+      "path": "C:\\Users\\you\\seekfs-demo\\reports",
+      "name": "reports",
+      "is_dir": true,
+      "size": 11
+    },
+    {
+      "path": "C:\\Users\\you\\seekfs-demo\\reports\\quarterly-report.txt",
+      "name": "quarterly-report.txt",
+      "is_dir": false,
+      "size": 4
+    }
+  ]
+}</code></pre></div>
+<div class="agent-output"><span class="code-note">Count output</span><pre class="studio-code"><code>1</code></pre></div></div>
+</div></section>
+
+<section class="product-section tint" aria-labelledby="volume-title"><div class="studio-shell agent-layout">
+<div class="agent-copy"><h2 id="volume-title">6. Use a resident volume index</h2><p>For daily search, build a resident index for an NTFS volume and launch the service. Run this in an administrator PowerShell in the extracted folder.</p><p>You can also open <code>seekfs-native.exe</code> (the primary desktop app) or <code>seekfs-ui.exe</code> (the previous web-view UI), tick drives under Settings &gt; Drives, keep "Install the seekfs service" checked, and click Apply.</p><p>Then query without <code>-db</code>. The CLI uses the resident service.</p></div>
+<div><span class="code-note">Volume index and service</span><pre class="studio-code"><code class="code-command">.\seekfs.exe index-volumes -volume C: -launch
+.\seekfs.exe search main
+.\seekfs.exe search --under C:\git\project main.go
+.\seekfs.exe count "ext:md"</code></pre></div>
+</div></section>
+
+<section class="product-section" aria-labelledby="filters-title"><div class="studio-shell">
+<div class="section-intro"><h2 id="filters-title">Query terms that narrow a result set</h2><p>Filters are query terms. Combine them with a filename term to keep a result set small.</p></div>
+<ul class="agent-points"><li><code>ext:go</code> matches an exact file extension.</li><li><code>dir:cmd</code> matches a path substring. Use <code>-path</code> when terms can appear in the directory part.</li><li><code>in:src</code> or <code>--under C:\git\project</code> scopes the search to a subtree.</li><li><code>glob:*.py</code> matches a file name. A pattern with <code>/</code> or <code>**</code> matches the full path.</li><li><code>size:&gt;100mb</code> and <code>dm:today</code> filter by metadata.</li><li><code>git:modified</code> narrows results to a Git status.</li><li><code>--exists</code> checks that each path still exists.</li></ul>
+</div></section>
+
+<section class="product-section tint" aria-labelledby="script-title"><div class="studio-shell agent-layout">
+<div class="agent-copy"><h2 id="script-title">Use it from a script or agent</h2><p>Scope the search before you raise the limit. A broad query can return thousands of rows.</p><p><code>--exists</code> calls <code>os.Stat</code> and is slower. Use it when stale index entries matter.</p><p>The JSON reply includes <code>ok</code>, <code>query</code>, <code>count</code>, <code>limit</code>, <code>complete</code>, and <code>results</code>.</p></div>
+<div><span class="code-note">Agent-safe forms</span><pre class="studio-code"><code class="code-command">.\seekfs.exe search --json --under C:\git\project main.go
+.\seekfs.exe count -path "ext:go dir:cmd main"
+.\seekfs.exe search -path --exists --recent 24h "ext:go"
+.\seekfs.exe config set output_format json
+.\seekfs.exe config set default_limit 20
+.\seekfs.exe defaults --json</code></pre></div>
+</div></section>
+
+<section class="product-section" aria-labelledby="limits-title"><div class="studio-shell">
+<div class="section-intro"><h2 id="limits-title">Know the limits</h2></div>
+<ul class="agent-points"><li>Windows and NTFS are the primary target. Ranking is simple.</li><li>Size, date, and attribute filters need metadata captured by the index. Older indexes without it return an error.</li><li>A newly created directory may report zero size until it is folded into the base index.</li><li>Index files contain local path names. Treat them as local metadata.</li><li>This guide searches names and paths. Run <code>.\seekfs.exe syntax</code> for the current query surface, and use wgrep or ripgrep for code search.</li></ul>
+</div></section>
+
+<section class="product-section tint" aria-labelledby="sources-title"><div class="studio-shell">
+<div class="section-intro"><h2 id="sources-title">Sources and related</h2><p>Commands checked against seekfs 1.12.1 on Windows with a small folder index: <code>index</code>, <code>search</code>, <code>--json</code>, and <code>count</code>.</p></div>
+<div class="resource-links"><a href="/seekfs/">seekfs product page</a><a href="https://github.com/holdfast-labs/seekfs/blob/main/search-syntax.md">Search syntax</a><a href="https://github.com/holdfast-labs/seekfs/blob/main/docs/SERVICE.md">Service setup</a><a href="https://github.com/holdfast-labs/seekfs#readme">CLI reference</a><a href="/guides/local-code-search/">Search a local codebase with wgrep</a><a href="/guides/background-jobs/">Run long jobs with vanth</a></div>
+</div></section>
+</main>
+<footer class="studio-footer"><div class="studio-footer-inner"><span>© <span data-year>2026</span> Holdfast Labs</span><nav aria-label="Footer"><a href="/guides/">Guides</a><a href="/changelog/">Changelog</a><a href="/about/">About</a><a href="https://github.com/holdfast-labs">GitHub</a></nav></div></footer>
+</body></html>

@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head><meta name="darkreader-lock">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Local code search with wgrep: semantic and exact</title>
+<meta name="description" content="Install wgrep 0.3.0, attach a repository, search by meaning, scope results to a folder, and switch to exact ripgrep text. Complete example and output.">
+<meta name="theme-color" content="#f5f5f2" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#111111" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://holdfast.sh/guides/local-code-search/">
+<meta property="og:type" content="article"><meta property="og:site_name" content="Holdfast Labs">
+<meta property="og:title" content="Local code search with wgrep: semantic and exact"><meta property="og:description" content="Install wgrep 0.3.0, attach a repository, search by meaning, scope results to a folder, and switch to exact ripgrep text. Complete example and output.">
+<meta property="og:url" content="https://holdfast.sh/guides/local-code-search/"><meta property="og:image" content="https://holdfast.sh/assets/og/wgrep.png">
+<meta property="og:image:width" content="1280"><meta property="og:image:height" content="640">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://holdfast.sh/assets/og/wgrep.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://holdfast.sh/guides/local-code-search/#article",
+      "headline": "Local code search with wgrep: semantic and exact",
+      "description": "Install wgrep 0.3.0, attach a repository, search by meaning, scope results to a folder, and switch to exact ripgrep text. Complete example and output.",
+      "url": "https://holdfast.sh/guides/local-code-search/",
+      "mainEntityOfPage": {"@type": "WebPage", "@id": "https://holdfast.sh/guides/local-code-search/"},
+      "author": {"@type": "Organization", "name": "Holdfast Labs", "url": "https://holdfast.sh/"},
+      "publisher": {
+        "@type": "Organization",
+        "name": "Holdfast Labs",
+        "url": "https://holdfast.sh/",
+        "logo": {"@type": "ImageObject", "url": "https://holdfast.sh/assets/icons/icon-512.png", "width": 512, "height": 512}
+      },
+      "image": {"@type": "ImageObject", "url": "https://holdfast.sh/assets/og/wgrep.png", "width": 1280, "height": 640},
+      "articleSection": "Guides",
+      "inLanguage": "en",
+      "isPartOf": {"@type": "CollectionPage", "@id": "https://holdfast.sh/guides/"}
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://holdfast.sh/guides/local-code-search/#breadcrumb",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://holdfast.sh/"},
+        {"@type": "ListItem", "position": 2, "name": "Guides", "item": "https://holdfast.sh/guides/"},
+        {"@type": "ListItem", "position": 3, "name": "Local code search with wgrep", "item": "https://holdfast.sh/guides/local-code-search/"}
+      ]
+    }
+  ]
+}
+</script>
+<link rel="icon" href="/assets/mark.svg" type="image/svg+xml"><link rel="icon" href="/assets/icons/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest">
+<link rel="preload" href="/assets/fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/styles.css"><link rel="stylesheet" href="/assets/studio.css"><link rel="stylesheet" href="/assets/sculpture.css?v=2">
+<script defer src="/assets/site.js"></script>
+<script>document.documentElement.dataset.theme=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"</script>
+<script defer src="/assets/studio.js?v=3"></script></head>
+<body class="studio-guide"><a class="skip-link" href="#main">Skip to content</a>
+<header class="studio-header">
+<a class="studio-brand" href="/" aria-label="Holdfast Labs home"><img src="/assets/mark.svg?v=roots" alt="" width="32" height="32"><span>Holdfast Labs</span></a>
+<nav class="studio-nav" aria-label="Main navigation">
+<details class="studio-menu"><summary>Products <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m4 6 4 4 4-4" stroke="currentColor" stroke-width="1.5"/></svg></summary>
+<div class="studio-menu-panel">
+<a href="/seekfs/" data-root-product="seekfs"><strong>seekfs</strong><p>Instant file search. For you and your agents.</p></a>
+<a href="/vanth/" data-root-product="vanth"><strong>vanth</strong><p>Background jobs that wake your agent.</p></a>
+<a href="/wgrep/" data-root-product="wgrep"><strong>wgrep</strong><p>Code search. Semantic or exact.</p></a>
+
+</div></details>
+<a href="/guides/">Guides</a>
+<a class="nav-secondary" href="https://github.com/holdfast-labs">GitHub <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 12 12 4M4 4h8v8" stroke="currentColor" stroke-width="1.3"/></svg></a>
+</nav></header>
+<main id="main">
+<section class="hero hero-sub" aria-labelledby="guide-title">
+  <div class="studio-shell hero-inner">
+    <p class="hero-note" style="margin-top:0;margin-bottom:18px">Guide · wgrep 0.3.0</p>
+    <h1 id="guide-title" style="width:100%">Search a local codebase<br><span class="soft">by meaning and exact text</span></h1>
+    <p class="hero-dek" style="width:100%">Install wgrep, index one repository, and run a semantic query, a scoped query, and an exact text search. The example uses a two-file Python repository so you can check each step.</p>
+  </div>
+</section>
+
+<section class="product-section tint" aria-labelledby="before-title"><div class="studio-shell">
+<div class="section-intro"><h2 id="before-title">Before you start</h2><p>The guide takes about five minutes. The first index build is the slow part.</p></div>
+<ul class="agent-points"><li>Windows x64, Linux x64, or macOS. The commands below use Windows PowerShell.</li><li>PowerShell 5.1 or later, Git, and a local repository.</li><li>Network access for the first <code>wg up</code>. It downloads about 56 MB of model and parser assets.</li><li>No <code>rg</code> binary is needed. The ripgrep 15.1 engine is inside <code>wg</code>.</li></ul>
+</div></section>
+
+<section class="product-section" aria-labelledby="install-title"><div class="studio-shell agent-layout">
+<div class="agent-copy"><h2 id="install-title">1. Download and unpack</h2><p>Download the Windows archive from the <a href="https://github.com/holdfast-labs/wgrep/releases/latest">latest release</a>. The release page also has Linux and macOS archives.</p><p>The extracted folder has a build suffix. The wildcard below finds it.</p><p>The first <code>wg up</code> downloads the model and parser assets. Later runs use the local cache.</p></div>
+<div><span class="code-note">Windows x64 · PowerShell</span><pre class="studio-code"><code class="code-command">Invoke-WebRequest https://github.com/holdfast-labs/wgrep/releases/download/v0.3.0/wg-0.3.0-windows-x64.zip -OutFile wg-0.3.0-windows-x64.zip
+Expand-Archive wg-0.3.0-windows-x64.zip -DestinationPath .
+$dir = (Get-ChildItem wg-0.3.0-windows-x64-* -Directory)[0].FullName
+$env:PATH = "$dir\bin;$env:PATH"
+wg --version</code></pre>
+<div class="agent-output"><span class="code-note">Expected version</span><pre class="studio-code"><code>wg 0.3.0</code></pre></div></div>
+</div></section>
+
+<section class="product-section tint" aria-labelledby="fixture-title"><div class="studio-shell agent-layout">
+<div class="agent-copy"><h2 id="fixture-title">2. Create a small repository</h2><p>The example creates a two-file Python repository in your home folder. Replace it with your own repository after the first run.</p><p>The files are deliberately small. The command order and output shape are the point.</p></div>
+<div><span class="code-note">Create the fixture</span><pre class="studio-code"><code class="code-command">$demo = "$env:USERPROFILE\wgrep-demo"
+New-Item -ItemType Directory -Force "$demo\src" | Out-Null
+git -C $demo init
+@'
+def validate_request(req):
+    if "token" not in req.headers:
+        raise ValueError("missing token")
+    return True
+
+def handle_request(req):
+    validate_request(req)
+    return {"ok": True}
+'@ | Set-Content "$demo\src\server.py"
+@'
+def add(a, b):
+    return a + b
+'@ | Set-Content "$demo\src\maths.py"</code></pre></div>
+</div></section>
+
+<section class="product-section" aria-labelledby="attach-title"><div class="studio-shell agent-layout">
+<div class="agent-copy"><h2 id="attach-title">3. Attach the repository</h2><p>Run <code>wg up</code> in the repository. Without a path, it uses the nearest Git ancestor or the current directory. It returns when the root is ready.</p><p>On Windows PowerShell, the progress line can appear in red. It is progress output, not an error. Use <code>wg up --json</code> in scripts.</p><p><code>wg status</code> shows the attached root and index state.</p></div>
+<div><span class="code-note">Attach the root</span><pre class="studio-code"><code class="code-command">cd $demo
+wg up</code></pre>
+<div class="agent-output"><span class="code-note">Example output · timings vary</span><pre class="studio-code"><code>Ready: 2 files, 2 chunks
+Root: C:\Users\you\wgrep-demo
+Build: 0.04s | Model setup: 0.00s | Total: 0.21s | PID: 56784
+Text index: 0.02s | 2 files | 0.0 MB on disk | 0.0 MB resident</code></pre></div>
+<div class="agent-output"><span class="code-note">Check the root</span><pre class="studio-code"><code class="code-command">wg status</code></pre></div>
+<div class="agent-output"><span class="code-note">Example output · one attached root</span><pre class="studio-code"><code>pid=56784 models=1 roots=1
+C:\Users\you\wgrep-demo [ready]: 2 files, 2 chunks, generation 1
+  text: ready [current], 2 files, 0.0 MB disk, 0.0 MB resident</code></pre></div></div>
+</div></section>
+
+<section class="product-section tint" aria-labelledby="meaning-title"><div class="studio-shell agent-layout">
+<div class="agent-copy"><h2 id="meaning-title">4. Search by meaning</h2><p>The default route ranks code chunks from the live index. Write the behavior or symbol you expect to find.</p><p><code>--top</code> accepts 1 to 100 and defaults to 5. <code>--json</code> returns a semantic JSON array. <code>--explain</code> adds score fields and requires <code>--json</code>.</p><p>Semantic results are ranked, not exhaustive. A correct answer can fall outside the shortlist. The fixture also returns <code>src\maths.py</code> as a weak second result.</p></div>
+<div><span class="code-note">Semantic, the default</span><pre class="studio-code"><code class="code-command">wg "where are incoming requests validated" --top 3</code></pre>
+<div class="agent-output"><span class="code-note">Example output · paths and spans</span><pre class="studio-code"><code>src\server.py:1-8
+def validate_request(req):
+    if "token" not in req.headers:
+        raise ValueError("missing token")
+    return True
+
+def handle_request(req):
+    validate_request(req)
+    return {"ok": True}
+
+src\maths.py:1-2
+def add(a, b):
+    return a + b</code></pre></div></div>
+</div></section>
+
+<section class="product-section" aria-labelledby="scope-title"><div class="studio-shell agent-layout">
+<div class="agent-copy"><h2 id="scope-title">5. Limit the search with scope and filters</h2><p>Version 0.3.0 adds semantic scope. Pass a file or directory after the query to search only that part of the attached root. A missing scope path acts as an empty scope.</p><p>Scope limits the candidate set. It does not remove weak matches. Use an exclude glob or a score cutoff to remove them.</p><p>Repeat <code>--semantic-glob</code> to include files. Prefix a pattern with <code>!</code> to exclude files. Patterns without <code>/</code> match file names at any depth. Patterns with <code>/</code> are relative to the attached root. Windows also accepts native <code>\</code> separators in root-relative patterns.</p><p><code>--min-score</code> keeps chunks at or above a raw cosine score. There is no default cutoff. If nothing passes, JSON output is <code>[]</code> and the command returns exit 1.</p></div>
+<div><span class="code-note">Scope to src</span><pre class="studio-code"><code class="code-command">wg "where are incoming requests validated" src --top 3</code></pre>
+<div class="agent-output"><span class="code-note">Example output · paths and spans</span><pre class="studio-code"><code>src\server.py:1-8
+src\maths.py:1-2</code></pre></div>
+<div class="agent-output"><span class="code-note">Exclude maths.py</span><pre class="studio-code"><code class="code-command">wg "where are incoming requests validated" --semantic-glob "*.py" --semantic-glob "!src/maths.py" --top 3</code></pre></div>
+<div class="agent-output"><span class="code-note">Example output · one match</span><pre class="studio-code"><code>src\server.py:1-8</code></pre></div>
+<div class="agent-output"><span class="code-note">Apply a cutoff</span><pre class="studio-code"><code class="code-command">wg "where are incoming requests validated" --top 3 --min-score 0.35 --json</code></pre></div>
+<div class="agent-output"><span class="code-note">Example output · selected fields</span><pre class="studio-code"><code>[{"path":"src\\server.py","start":1,"end":8}]</code></pre></div>
+<div class="agent-output"><span class="code-note">More scope forms from the wgrep docs · adapt paths to your repository</span><pre class="studio-code"><code class="code-command">wg "teacher logits distilled into the student" trainers --semantic-glob "*.py"
+wg "double surface topology loss" --semantic-glob "*.py" --semantic-glob "!tools/**"</code></pre></div></div>
+</div></section>
+
+<section class="product-section tint" aria-labelledby="exact-title"><div class="studio-shell agent-layout">
+<div class="agent-copy"><h2 id="exact-title">6. Switch to exact text</h2><p>A ripgrep flag switches to the built-in ripgrep 15.1 engine. It runs inside the <code>wg</code> process. No <code>rg</code> binary is needed.</p><p>Always pass a path in scripts and agent commands. With no path, ripgrep reads stdin when stdin is a pipe.</p><p>The text route does not need <code>wg up</code> or a running daemon. An attached root adds trigram pruning. A fallback to a full scan changes speed, not results.</p></div>
+<div><span class="code-note">Exact text, with line numbers</span><pre class="studio-code"><code class="code-command">wg -n -F "validate_request" .</code></pre>
+<div class="agent-output"><span class="code-note">Example output · exit code 0</span><pre class="studio-code"><code>.\src\server.py:1:def validate_request(req):
+.\src\server.py:7:    validate_request(req)</code></pre></div>
+<div class="agent-output"><span class="code-note">Regex and glob forms</span><pre class="studio-code"><code class="code-command">wg -n -e "fn\s+\w+\(" .
+wg -g "*.py" "validate_request" .
+wg --files .</code></pre></div></div>
+</div></section>
+
+<section class="product-section" aria-labelledby="agent-title"><div class="studio-shell agent-layout">
+<div class="agent-copy"><h2 id="agent-title">7. Use it from an agent</h2><p>Ask for JSON and pass an explicit path on the exact route. Exit codes are 0 for a match, 1 for no match, and 2 for an error.</p><p>Use <code>--top</code> to bound the shortlist. Use <code>-F</code> or <code>-e</code> when the agent needs every match, not a ranking.</p></div>
+<div><span class="code-note">Agent-safe forms</span><pre class="studio-code"><code class="code-command">wg "where are requests validated" --json --top 5
+wg --json -F "needle" .
+wg status --json</code></pre></div>
+</div></section>
+
+<section class="product-section tint" aria-labelledby="measured-title"><div class="studio-shell">
+<div class="section-intro"><h2 id="measured-title">Measured</h2><p>Warm semantic query, p50: 25.2 ms for wgrep and 565.7 ms for the sgrep CLI. Rare identifier text search: 6.0 ms for wgrep and 63.8 ms for ripgrep 15.1. Workload: 13,332 Rust files on a Debian 13 VPS with 4 vCPU.</p></div>
+<div class="resource-links"><a href="https://github.com/holdfast-labs/wgrep/blob/main/docs/benchmarks.md">Method, limits, and raw data</a></div>
+</div></section>
+
+<section class="product-section" aria-labelledby="limits-title"><div class="studio-shell">
+<div class="section-intro"><h2 id="limits-title">Know the limits</h2></div>
+<ul class="agent-points"><li>The semantic route returns a ranked shortlist, not a complete result set.</li><li>The text index only removes files that cannot match. Common terms and broad regexes still scan much of the tree.</li><li>One daemon holds up to 32 attached roots. <code>wg down</code> stops every root.</li><li>Semantic paths and arguments must be UTF-8. The text route passes non-UTF-8 arguments to the engine and falls back to a full scan when the index cannot represent a path.</li></ul>
+</div></section>
+
+<section class="product-section tint" aria-labelledby="sources-title"><div class="studio-shell">
+<div class="section-intro"><h2 id="sources-title">Sources and related</h2><p>Commands checked against wgrep 0.3.0 on Windows with a two-file fixture: <code>wg up</code>, <code>wg status</code>, a semantic query, scoped and filtered queries, <code>--min-score</code>, <code>wg -F</code>, and <code>wg down</code>.</p></div>
+<div class="resource-links"><a href="/wgrep/">wgrep product page</a><a href="https://github.com/holdfast-labs/wgrep/blob/main/docs/usage.md">Usage and limits</a><a href="https://github.com/holdfast-labs/wgrep/blob/main/docs/agent-guide.md">Agent guide</a><a href="https://github.com/holdfast-labs/wgrep/blob/main/docs/benchmarks.md">Benchmarks</a><a href="/guides/windows-file-search/">Find files on Windows with seekfs</a><a href="/guides/background-jobs/">Run long jobs with vanth</a></div>
+</div></section>
+</main>
+<footer class="studio-footer"><div class="studio-footer-inner"><span>© <span data-year>2026</span> Holdfast Labs</span><nav aria-label="Footer"><a href="/guides/">Guides</a><a href="/changelog/">Changelog</a><a href="/about/">About</a><a href="https://github.com/holdfast-labs">GitHub</a></nav></div></footer>
+</body></html>
